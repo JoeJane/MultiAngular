@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# 3rd party libraries
+node_modules
+.idea
