@@ -14,7 +14,7 @@ const { findByUsername } = require('../models/survey');
 }*/
 
 /* GET request for surveys */
-router.get('/list', surveyController.displaySurveyList);
+router.get('/surveyList', surveyController.displaySurveyList);
 
 /* GET request for add page - CREATE Operation*/
 router.get('/add', surveyController.displayAddPage);

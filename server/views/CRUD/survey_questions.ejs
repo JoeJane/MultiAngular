@@ -1,20 +1,5 @@
-<%- include navbar.ejs %>
-
-<head>
-    <title>
-      <%= title %>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/Content/style.css' />
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
-  </head>
-  <script src="/public/Scripts/script.js"></script>
-  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/jquery/dist/jquery.min.js"></script>
-
-  <br>
-  <br>
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
 
 <main class="container">
     <div class="row">
@@ -68,3 +53,6 @@
         </div>
     </div>
 </main>
+
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %>
