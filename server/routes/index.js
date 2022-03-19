@@ -1,9 +1,27 @@
-var express = require('express');
-var router = express.Router();
+// require modules for the index page
+let express = require('express');
+let router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+let indexController = require('../controllers/index');
+
+/* GET Home page. */
+router.get('/', indexController.displayHomePage);
+router.get('/home', indexController.displayHomePage);
+
+// GET Route for displaying Login page
+router.get('/login', indexController.displayLoginPage);
+
+// POST Route for processing Login page
+router.post('/login', indexController.processLoginPage);
+
+// GET Route for displaying Register page
+router.get('/register', indexController.displayRegisterPage);
+
+// POST Route for processing Register page
+router.post('/register', indexController.processRegisterPage);
+
+// GET to perform User Logout
+router.get('/logout', indexController.performLogout);
+
 
 module.exports = router;
