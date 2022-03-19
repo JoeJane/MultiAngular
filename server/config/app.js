@@ -27,6 +27,9 @@ mongoDB.once('open', ()=>{
 })
 
 let indexRouter = require('../routes');
+let surveyRouter = require('../routes/survey');
+let surveyQuestionsRouter = require('../routes/surveyQuestions');
+
 
 let app = express();
 
@@ -71,6 +74,9 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use('/', indexRouter);
+app.use('/survey', surveyRouter);
+app.use('/surveyQuestions', surveyQuestionsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
