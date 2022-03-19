@@ -106,3 +106,4 @@ dist
 # 3rd party libraries
 node_modules
 .idea
+.vscode
