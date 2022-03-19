@@ -1,4 +1,4 @@
-// install 3rd party packages
+// 3rd party packages
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -6,12 +6,6 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
 // module for Authentication
-let session = require('express-session');
-let passport = require('passport');
-let passportLocal = require('passport-local');
-let localStrategy = passportLocal.Strategy;
-let flash = require('connect-flash');
-
 
 // database setup
 let mongoose = require('mongoose');
@@ -26,10 +20,9 @@ mongoDB.once('open', ()=>{
   console.log('Connected to MongoDB...');
 })
 
-let indexRouter = require('../routes');
-let surveyRouter = require('../routes/survey');
-let surveyQuestionsRouter = require('../routes/surveyQuestions');
 
+let indexRouter = require('../routes');
+let usersRouter = require('../routes/users');
 
 let app = express();
 
@@ -41,42 +34,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../../public'))); // which ever inside public folder is available public
+app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
-
-// setup express session
-app.use(session({
-  secret: "SomeSecret",
-  saveUninitialized: false,
-  resave: false
-}));
-
-// initialize flash
-app.use(flash());
-
-// initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-// passport user configuration
-
-// create a User model instance
-let userModel = require('../models/user');
-let User = userModel.User;
-
-// implement a User Authentication Strategy
-passport.use(User.createStrategy());
-
-// serialize and deserialize the user info
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 
 
 app.use('/', indexRouter);
-app.use('/survey', surveyRouter);
-app.use('/surveyQuestions', surveyQuestionsRouter);
-
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -91,7 +54,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', { title: 'Error' });
+  res.render('error');
 });
 
 module.exports = app;
