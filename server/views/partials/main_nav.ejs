@@ -15,10 +15,12 @@
                     <a class="nav-link <%= title === 'Home' ? 'active' : '' %>" href="/home"><i
                                 class="fa-solid fa-house"></i> Home</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link <%= title === 'Survey List' ? 'active' : '' %>" href="/survey/surveyList"><i
                                 class="fa-solid fa-house"></i> Survey Management</a>
                 </li>
+
 
                 <% if (typeof displayName == 'string' && displayName) { %>
                     <li class="navbar-text"><i class="fas fa-lg fa-user"></i> Welcome, <%= displayName %> </li>
