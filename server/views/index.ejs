@@ -1,19 +1,22 @@
-<!--Import Header and Navigation bar-->
-<%- include partials/header.ejs %>
-<%- include partials/main_nav.ejs %>
+<%- include navbar.ejs %>
+  <!DOCTYPE html>
+  <html>
 
-<!-- home page -->
-<section class="py-5 text-center container">
-  <div class="row py-lg-8">
-    <div class="col-lg-8 col-md-8 mx-auto">
-      <h1 class="fw-light">Welcome to</h1>
-      <h1 class="mb-4">
-        <span id="typed">|</span>
-      </h1>
-    </div>
-  </div>
-</section>
+  <head>
+    <title>
+      <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/Content/style.css' />
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+  </head>
+  <script src="/public/Scripts/script.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/jquery/dist/jquery.min.js"></script>
 
-<!-- Import Footer and Bottom navigation bar-->
-<%- include partials/bottom_nav.ejs %>
-<%- include partials/footer.ejs %>
+  <body>
+    
+  </body>
+
+  </html>

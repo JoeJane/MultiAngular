@@ -37,4 +37,3 @@ let surveyQuestionsModel = mongoose.Schema(
 );
 
 module.exports = mongoose.model('Survey Questions', surveyQuestionsModel);
-

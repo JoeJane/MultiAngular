@@ -11,7 +11,7 @@ module.exports.displaySurveyList = (req, res, next) => {
         if(err){
             return console.error(err);
         }else{
-            res.render('CRUD/list', {
+            res.render('list', {
                 title: 'Survey Templates', 
                 Survey: surveyList 
                 //displayName:req.user ? req.user.displayName : ''
@@ -22,7 +22,7 @@ module.exports.displaySurveyList = (req, res, next) => {
 
 /* GET request for create page - CREATE Operation*/
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('CRUD/add', {
+    res.render('addSurvey', {
         title: 'Add Survey' 
         //displayName: req.user ? req.user.displayName : ''
     })          
@@ -46,7 +46,7 @@ module.exports.processAddPage = (req, res, next) => {
         else
         {
             // refresh the survey list
-            res.redirect('/survey/surveyList');
+            res.redirect('/list');
         }
     });
 
@@ -60,7 +60,7 @@ module.exports.displayEditPage = (req, res, next) => {
             console.log(err);
             res.end(err);
         }else{
-            res.render('CRUD/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
+            res.render('/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
         }
     });
 }
