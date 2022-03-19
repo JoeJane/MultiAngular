@@ -3,6 +3,8 @@ let express = require('express');
 let router = express.Router();
 
 let indexController = require('../controllers/index');
+let surveyController = require('../controllers/survey');
+let surveyQuestionsController = require('../controllers/surveyQuestions');
 
 /* GET Home page. */
 router.get('/', indexController.displayHomePage);
@@ -22,6 +24,21 @@ router.post('/register', indexController.processRegisterPage);
 
 // GET to perform User Logout
 router.get('/logout', indexController.performLogout);
+
+
+router.get('/list', surveyController.displaySurveyList);
+
+/* GET request for add page - CREATE Operation*/
+router.get('/addSurvey', surveyController.displayAddPage);
+
+/* POST request for add page - CREATE Operation*/
+router.post('/addSurvey', surveyController.processAddPage);
+
+/* GET request for add page - CREATE Operation*/
+router.get('/surveyQuestion', surveyQuestionsController.displayAddSurveyQuestionsPage);
+
+/* POST request for add page - CREATE Operation*/
+router.post('/surveyQuestion', surveyQuestionsController.processAddSurveyQuestionsPage);
 
 
 module.exports = router;
