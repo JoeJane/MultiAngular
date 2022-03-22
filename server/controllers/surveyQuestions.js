@@ -6,7 +6,6 @@ let router = express.Router();
 let SurveyQuestions = require('../models/surveyQuestions');
 
 /* GET request for survey */
-
 module.exports.displaySurveyQuestionsList = (req, res, next) => {
 	SurveyQuestions.find((err, survey) => {
 		if (err) {
