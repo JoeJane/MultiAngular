@@ -23,7 +23,7 @@ module.exports.displaySurveyQuestionsList = (req, res, next) => {
 /* GET request for create page - CREATE Operation*/
 module.exports.displayAddSurveyQuestionsPage = (req, res, next) => {
 	res.render('CRUD/survey_questions', {
-		title: 'Add questions to the survey',
+		title: 'Add questions to the survey'
 		//displayName: req.user ? req.user.displayName : ''
 	});
 };
@@ -34,7 +34,7 @@ module.exports.processAddSurveyQuestionsPage = (req, res, next) => {
 		question1: req.body.question1,
 		question2: req.body.question2,
 		question3: req.body.question3,
-		question4: req.body.question4,
+		question4: req.body.question4
 	});
 
 	SurveyQuestions.create(newSurveyQuestions, (err, Survey) => {
@@ -86,3 +86,4 @@ module.exports.processSurveyQuestionUpdate = (req, res, next) => {
 		}
 	});
 };
+

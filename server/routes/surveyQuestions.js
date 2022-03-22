@@ -19,6 +19,9 @@ router.get(
 	surveyQuestionsController.displaySurveyQuestionsList
 );
 
+/* GET request for surveys */
+//router.get('/surveyList', surveyQuestionsController.displaySurveyQuestionsList);
+
 /* GET request for add page - CREATE Operation*/
 router.get('/', surveyQuestionsController.displayAddSurveyQuestionsPage);
 
@@ -35,3 +38,4 @@ router.get(
 router.post('/edit/:id', surveyQuestionsController.processSurveyQuestionUpdate);
 
 module.exports = router;
+
