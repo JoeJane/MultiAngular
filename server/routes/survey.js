@@ -16,17 +16,17 @@ const { findByUsername } = require('../models/survey');
 /* GET request for surveys */
 router.get('/surveyList', surveyController.displaySurveyList);
 
-/* GET request for add page - CREATE Operation*/
+/* GET request for add pages - CREATE Operation*/
 router.get('/add', surveyController.displayAddPage);
 
-/* POST request for add page - CREATE Operation*/
+/* POST request for add pages - CREATE Operation*/
 router.post('/add', surveyController.processAddPage);
 
-/* GET request for edit page - UPDATE Operation*/
+/* GET request for edit pages - UPDATE Operation*/
 //router.get('/edit/:id', requireAuth, contactsController.displayEditPage);
 router.get('/edit/:id', surveyController.displayEditPage);
 
-/* POST request for edit page - UPDATE Operation*/
+/* POST request for edit pages - UPDATE Operation*/
 //router.post('/edit/:id', requireAuth, contactsController.processEditPage);
 router.post('/edit/:id', surveyController.processEditPage);
 

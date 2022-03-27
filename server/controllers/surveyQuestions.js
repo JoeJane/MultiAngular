@@ -20,7 +20,7 @@ module.exports.displaySurveyQuestionsList = (req, res, next) => {
 	});
 };
 
-/* GET request for create page - CREATE Operation*/
+/* GET request for create pages - CREATE Operation*/
 module.exports.displayAddSurveyQuestionsPage = (req, res, next) => {
 	res.render('CRUD/survey_questions', {
 		title: 'Add questions to the survey'
@@ -28,7 +28,7 @@ module.exports.displayAddSurveyQuestionsPage = (req, res, next) => {
 	});
 };
 
-/* POST request for add page - CREATE Operation*/
+/* POST request for add pages - CREATE Operation*/
 module.exports.processAddSurveyQuestionsPage = (req, res, next) => {
 	let newSurveyQuestions = SurveyQuestions({
 		question1: req.body.question1,
@@ -48,7 +48,7 @@ module.exports.processAddSurveyQuestionsPage = (req, res, next) => {
 	});
 };
 
-/* GET request for edit page - UPDATE Operation*/
+/* GET request for edit pages - UPDATE Operation*/
 module.exports.displaySurveyQuestionEditPage = (req, res, next) => {
 	let id = req.params.id;
 	SurveyQuestions.findById(id, (err, surveyQuestion) => {
@@ -65,7 +65,7 @@ module.exports.displaySurveyQuestionEditPage = (req, res, next) => {
 	});
 };
 
-/* POST request for edit page - UPDATE Operation*/
+/* POST request for edit pages - UPDATE Operation*/
 module.exports.processSurveyQuestionUpdate = (req, res, next) => {
 	let id = req.params.id;
 	console.log(req.body);

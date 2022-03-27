@@ -22,19 +22,19 @@ router.get(
 /* GET request for surveys */
 //router.get('/surveyList', surveyQuestionsController.displaySurveyQuestionsList);
 
-/* GET request for add page - CREATE Operation*/
+/* GET request for add pages - CREATE Operation*/
 router.get('/', surveyQuestionsController.displayAddSurveyQuestionsPage);
 
-/* POST request for add page - CREATE Operation*/
+/* POST request for add pages - CREATE Operation*/
 router.post('/', surveyQuestionsController.processAddSurveyQuestionsPage);
 
-/* GET request for edit page - UPDATE Operation*/
+/* GET request for edit pages - UPDATE Operation*/
 router.get(
 	'/edit/:id',
 	surveyQuestionsController.displaySurveyQuestionEditPage
 );
 
-/* POST request for edit page - UPDATE Operation*/
+/* POST request for edit pages - UPDATE Operation*/
 router.post('/edit/:id', surveyQuestionsController.processSurveyQuestionUpdate);
 
 module.exports = router;
