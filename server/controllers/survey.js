@@ -20,7 +20,7 @@ module.exports.displaySurveyList = (req, res, next) => {
     });
 }
 
-/* GET request for create page - CREATE Operation*/
+/* GET request for create pages - CREATE Operation*/
 module.exports.displayAddPage = (req, res, next) => {
     res.render('CRUD/add', {
         title: 'Add Survey' 
@@ -28,7 +28,7 @@ module.exports.displayAddPage = (req, res, next) => {
     })          
 }
 
-/* POST request for add page - CREATE Operation*/
+/* POST request for add pages - CREATE Operation*/
 module.exports.processAddPage = (req, res, next) => {
     let newSurvey = Survey({
         "userId": req.body.userId,
@@ -52,7 +52,7 @@ module.exports.processAddPage = (req, res, next) => {
 
 }
 
-/* GET request for edit page - UPDATE Operation*/
+/* GET request for edit pages - UPDATE Operation*/
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
     Survey.findById(id,(err, surveyToEdit)=>{
@@ -65,7 +65,7 @@ module.exports.displayEditPage = (req, res, next) => {
     });
 }
 
-/* POST request for edit page - UPDATE Operation*/
+/* POST request for edit pages - UPDATE Operation*/
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;
     let updatedSurvey = Survey({

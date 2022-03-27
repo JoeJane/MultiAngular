@@ -3,7 +3,7 @@ let passport = require("passport");
 let userModel = require('../models/user');
 let User = userModel.User; // alias
 
-// Implementation for Home page
+// Implementation for Home pages
 module.exports.displayHomePage = (req, res, next) => {
     res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : '' });
 }
