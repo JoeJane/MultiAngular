@@ -1,99 +1,38 @@
 let express = require('express');
 let mongoose = require('mongoose');
 let router = express.Router();
+let passport = require('passport');
 
-//Store the model in a variable
-let Survey = require('../models/survey');
+let surveyController = require('../controllers/survey');
+const { findByUsername } = require('../models/survey');
 
-/* GET request for survey */
-module.exports.displaySurveyList = (req, res, next) => {
-    Survey.find((err, surveyList) =>{
-        if(err){
-            return console.error(err);
-        }else{
-            res.render('CRUD/list', {
-                title: 'Survey Templates', 
-                Survey: surveyList 
-                //displayName:req.user ? req.user.displayName : ''
-            })
-        }
-    });
-}
+/*function requireAuth(req,res,next){
+    if(!req.isAuthenticated){
+        return res.redirect('/login');
+    }
+    next();
+}*/
 
-/* GET request for create pages - CREATE Operation*/
-module.exports.displayAddPage = (req, res, next) => {
-    res.render('CRUD/add', {
-        title: 'Add Survey' 
-        //displayName: req.user ? req.user.displayName : ''
-    })          
-}
+/* GET request for surveys */
+router.get('/surveyList', surveyController.displaySurveyList);
+
+/* GET request for add pages - CREATE Operation*/
+router.get('/add', surveyController.displayAddPage);
 
 /* POST request for add pages - CREATE Operation*/
-module.exports.processAddPage = (req, res, next) => {
-    let newSurvey = Survey({
-        "userId": req.body.userId,
-        "surveyId": req.body.surveyId,
-        "title": req.body.title,
-        "description": req.body.description
-    });
-
-    Survey.create(newSurvey, (err, Survey) =>{
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            // refresh the survey list
-            res.redirect('/survey/surveyList');
-        }
-    });
-
-}
+router.post('/add', surveyController.processAddPage);
 
 /* GET request for edit pages - UPDATE Operation*/
-module.exports.displayEditPage = (req, res, next) => {
-    let id = req.params.id;
-    Survey.findById(id,(err, surveyToEdit)=>{
-        if(err){
-            console.log(err);
-            res.end(err);
-        }else{
-            res.render('CRUD/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
-        }
-    });
-}
+//router.get('/edit/:id', requireAuth, contactsController.displayEditPage);
+router.get('/edit/:id', surveyController.displayEditPage);
 
 /* POST request for edit pages - UPDATE Operation*/
-module.exports.processEditPage = (req, res, next) => {
-    let id = req.params.id;
-    let updatedSurvey = Survey({
-        "_id" : id,
-        "userId" : req.body.userId,
-	    "surveyId" : req.body.surveyId,
-	    "title" : req.body.title,
-        "description": req.body.description
-    })
-    Survey.updateOne({_id:id}, updatedSurvey, (err)=>{
-        if(err){
-            console.log(err);
-            res.end(err);
-        }else{
-            res.redirect('/survey/surveyList')
-        }
-    });
-}
+//router.post('/edit/:id', requireAuth, contactsController.processEditPage);
+router.post('/edit/:id', surveyController.processEditPage);
 
 /* GET request for delete - DELETE Operation*/
-module.exports.performDelete = (req, res, next) => {
-    let id = req.params.id;
-    Survey.remove({_id:id},(err)=>{
-        if(err){
-            console.log(err);
-            res.end(err);
-        }else{
-            res.redirect('/survey/surveyList');
-        }
-    });
-}
+//router.get('/delete/:id', requireAuth, contactsController.performDelete);
+router.get('/delete/:id', surveyController.performDelete);
+
+
+module.exports = router;
