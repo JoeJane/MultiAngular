@@ -1,38 +1,107 @@
 let express = require('express');
 let mongoose = require('mongoose');
 let router = express.Router();
-let passport = require('passport');
 
-let surveyController = require('../controllers/survey');
-const { findByUsername } = require('../models/survey');
+//Store the model in a variable
+let Survey = require('../models/survey');
 
-/*function requireAuth(req,res,next){
-    if(!req.isAuthenticated){
-        return res.redirect('/login');
-    }
-    next();
-}*/
+/* GET request for survey  */
+module.exports.displaySurveyList = (req, res, next) => {
+    Survey.find((err, surveyList) =>{
+        if(err){
+            return console.error(err);
+        }else{
+            /*res.render('CRUD/list', {
+                title: 'Survey Templates', 
+                Survey: surveyList 
+                //displayName:req.user ? req.user.displayName : ''
+            })*/
+            res.json(surveyList);
+        }
+    });
+}
 
-/* GET request for surveys */
-router.get('/surveyList', surveyController.displaySurveyList);
-
-/* GET request for add pages - CREATE Operation*/
-router.get('/add', surveyController.displayAddPage);
+/* GET request for create pages - CREATE Operation*/
+module.exports.displayAddPage = (req, res, next) => {
+    /*res.render('CRUD/add', {
+        title: 'Add Survey' 
+        //displayName: req.user ? req.user.displayName : ''
+    })*/
+    
+    res.json({success: true, msg: 'Successfully Displayed Add Survey Page'});
+}
 
 /* POST request for add pages - CREATE Operation*/
-router.post('/add', surveyController.processAddPage);
+module.exports.processAddPage = (req, res, next) => {
+    let newSurvey = Survey({
+        "userId": req.body.userId,
+        "surveyId": req.body.surveyId,
+        "title": req.body.title,
+        "description": req.body.description
+    });
+
+    Survey.create(newSurvey, (err, Survey) =>{
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            // refresh the survey list
+            //res.redirect('/survey/surveyList');
+
+            res.json({success: true, msg: 'Successfully Added New Survey'});
+        }
+    });
+
+}
 
 /* GET request for edit pages - UPDATE Operation*/
-//router.get('/edit/:id', requireAuth, contactsController.displayEditPage);
-router.get('/edit/:id', surveyController.displayEditPage);
+module.exports.displayEditPage = (req, res, next) => {
+    let id = req.params.id;
+    Survey.findById(id,(err, surveyToEdit)=>{
+        if(err){
+            console.log(err);
+            res.end(err);
+        }else{
+            //res.render('CRUD/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
+            res.json({success: true, msg: 'Successfully Displayed Survey to Edit', Survey: surveyToEdit});
+        }
+    });
+}
 
 /* POST request for edit pages - UPDATE Operation*/
-//router.post('/edit/:id', requireAuth, contactsController.processEditPage);
-router.post('/edit/:id', surveyController.processEditPage);
+module.exports.processEditPage = (req, res, next) => {
+    let id = req.params.id;
+    let updatedSurvey = Survey({
+        "_id" : id,
+        "userId" : req.body.userId,
+	    "surveyId" : req.body.surveyId,
+	    "title" : req.body.title,
+        "description": req.body.description
+    })
+    Survey.updateOne({_id:id}, updatedSurvey, (err)=>{
+        if(err){
+            console.log(err);
+            res.end(err);
+        }else{
+            //res.redirect('/survey/surveyList')
+            res.json({success: true, msg: 'Successfully Edited Survey', Survey: updatedSurvey});
+        }
+    });
+}
 
 /* GET request for delete - DELETE Operation*/
-//router.get('/delete/:id', requireAuth, contactsController.performDelete);
-router.get('/delete/:id', surveyController.performDelete);
-
-
-module.exports = router;
+module.exports.performDelete = (req, res, next) => {
+    let id = req.params.id;
+    Survey.remove({_id:id},(err)=>{
+        if(err){
+            console.log(err);
+            res.end(err);
+        }else{
+            //res.redirect('/survey/surveyList');
+            res.json({success: true, msg: 'Successfully Deleted Survey'});
+        }
+    });
+}

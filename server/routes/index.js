@@ -26,18 +26,4 @@ router.post('/register', indexController.processRegisterPage);
 // GET to perform User Logout
 router.get('/logout', indexController.performLogout);
 
-router.get('/list', surveyController.displaySurveyList);
-
-/* GET request for add pages - CREATE Operation*/
-router.get('/addSurvey', surveyController.displayAddPage);
-
-/* POST request for add pages - CREATE Operation*/
-router.post('/addSurvey', surveyController.processAddPage);
-
-/* GET request for add pages - CREATE Operation*/
-router.get('/surveyQuestion', surveyQuestionsController.displayAddSurveyQuestionsPage);
-
-/* POST request for add pages - CREATE Operation*/
-router.post('/surveyQuestion', surveyQuestionsController.processAddSurveyQuestionsPage);
-
 module.exports = router;
