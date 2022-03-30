@@ -11,7 +11,7 @@ module.exports.displaySurveyList = (req, res, next) => {
         if(err){
             return console.error(err);
         }else{
-            res.render('list', {
+            res.render('CRUD/list', {
                 title: 'Survey Templates', 
                 Survey: surveyList 
                 //displayName:req.user ? req.user.displayName : ''
@@ -20,15 +20,15 @@ module.exports.displaySurveyList = (req, res, next) => {
     });
 }
 
-/* GET request for create page - CREATE Operation*/
+/* GET request for create pages - CREATE Operation*/
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('addSurvey', {
+    res.render('CRUD/add', {
         title: 'Add Survey' 
         //displayName: req.user ? req.user.displayName : ''
     })          
 }
 
-/* POST request for add page - CREATE Operation*/
+/* POST request for add pages - CREATE Operation*/
 module.exports.processAddPage = (req, res, next) => {
     let newSurvey = Survey({
         "userId": req.body.userId,
@@ -46,13 +46,13 @@ module.exports.processAddPage = (req, res, next) => {
         else
         {
             // refresh the survey list
-            res.redirect('/list');
+            res.redirect('/survey/surveyList');
         }
     });
 
 }
 
-/* GET request for edit page - UPDATE Operation*/
+/* GET request for edit pages - UPDATE Operation*/
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
     Survey.findById(id,(err, surveyToEdit)=>{
@@ -60,12 +60,12 @@ module.exports.displayEditPage = (req, res, next) => {
             console.log(err);
             res.end(err);
         }else{
-            res.render('/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
+            res.render('CRUD/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
         }
     });
 }
 
-/* POST request for edit page - UPDATE Operation*/
+/* POST request for edit pages - UPDATE Operation*/
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;
     let updatedSurvey = Survey({
