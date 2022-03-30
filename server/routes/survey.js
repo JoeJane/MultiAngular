@@ -31,5 +31,4 @@ router.post('/edit/:id', surveyController.processEditPage);
 /* GET request for delete - DELETE Operation*/
 router.get('/delete/:id', surveyController.performDelete);
 
-
 module.exports = router;

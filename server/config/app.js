@@ -72,7 +72,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-
 app.use('/api', indexRouter);
 app.use('/api/survey', surveyRouter);
 app.use('/api/surveyQuestions', surveyQuestionsRouter);
