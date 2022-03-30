@@ -72,10 +72,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-
-app.use('/', indexRouter);
-app.use('/survey', surveyRouter);
-app.use('/surveyQuestions', surveyQuestionsRouter);
+app.use('/api', indexRouter);
+app.use('/api/survey', surveyRouter);
+app.use('/api/surveyQuestions', surveyQuestionsRouter);
 
 
 // catch 404 and forward to error handler

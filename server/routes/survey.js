@@ -23,16 +23,12 @@ router.get('/add', surveyController.displayAddPage);
 router.post('/add', surveyController.processAddPage);
 
 /* GET request for edit pages - UPDATE Operation*/
-//router.get('/edit/:id', requireAuth, contactsController.displayEditPage);
 router.get('/edit/:id', surveyController.displayEditPage);
 
 /* POST request for edit pages - UPDATE Operation*/
-//router.post('/edit/:id', requireAuth, contactsController.processEditPage);
 router.post('/edit/:id', surveyController.processEditPage);
 
 /* GET request for delete - DELETE Operation*/
-//router.get('/delete/:id', requireAuth, contactsController.performDelete);
 router.get('/delete/:id', surveyController.performDelete);
-
 
 module.exports = router;
