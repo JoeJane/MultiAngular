@@ -8,17 +8,17 @@ let surveyQuestionsController = require('../controllers/surveyQuestions');
 
 
 /* GET Home pages. */
-router.get('/', indexController.displayHomePage);
-router.get('/home', indexController.displayHomePage);
+//router.get('/', indexController.displayHomePage);
+//router.get('/home', indexController.displayHomePage);
 
 // GET Route for displaying Login pages
-router.get('/login', indexController.displayLoginPage);
+//router.get('/login', indexController.displayLoginPage);
 
 // POST Route for processing Login pages
 router.post('/login', indexController.processLoginPage);
 
 // GET Route for displaying Register pages
-router.get('/register', indexController.displayRegisterPage);
+//router.get('/register', indexController.displayRegisterPage);
 
 // POST Route for processing Register pages
 router.post('/register', indexController.processRegisterPage);
