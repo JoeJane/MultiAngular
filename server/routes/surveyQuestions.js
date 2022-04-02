@@ -31,6 +31,10 @@ router.post('/edit/:id', surveyQuestionsController.processSurveyQuestionUpdate);
 /* GET request for delete - DELETE Operation*/
 router.get('/delete/:id', surveyQuestionsController.performDelete);
 
+
+/* GET request for surveys - Get all Survey Questions */
+router.get('/:id', surveyQuestionsController.getSurveyQuestionById);
+
 module.exports = router;
 
 
