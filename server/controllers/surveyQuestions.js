@@ -1,34 +1,34 @@
 let express = require('express');
-let mongoose = require('mongoose');
-let router = express.Router();
 
 //Store the model in a variable
 let SurveyQuestions = require('../models/surveyQuestions');
 
 /* GET request for survey */
 module.exports.displaySurveyQuestionsList = (req, res, next) => {
-	SurveyQuestions.find((err, survey) => {
+	SurveyQuestions.find((err, surveyQuestionsList) => {
 		if (err) {
 			return console.error(err);
 		} else {
-			res.render('CRUD/survey_questions_list', {
+			/*res.render('CRUD/survey_questions_list', {
 				title: 'Survey Templates',
 				Survey: survey,
 				//displayName:req.user ? req.user.displayName : ''
-			});
+			});*/
+			res.json(surveyQuestionsList);
 		}
 	});
 };
 
-/* GET request for create page - CREATE Operation*/
+/* GET request for create pages - CREATE Operation*/
 module.exports.displayAddSurveyQuestionsPage = (req, res, next) => {
-	res.render('CRUD/survey_questions', {
+	/*res.render('CRUD/survey_questions', {
 		title: 'Add questions to the survey'
 		//displayName: req.user ? req.user.displayName : ''
-	});
+	});*/
+	res.json({success: true, msg: 'Successfully Displayed Add Survey Questions Page'});
 };
 
-/* POST request for add page - CREATE Operation*/
+/* POST request for add pages - CREATE Operation*/
 module.exports.processAddSurveyQuestionsPage = (req, res, next) => {
 	let newSurveyQuestions = SurveyQuestions({
 		question1: req.body.question1,
@@ -43,29 +43,31 @@ module.exports.processAddSurveyQuestionsPage = (req, res, next) => {
 			res.end(err);
 		} else {
 			// refresh the survey list
-			res.redirect('/survey/surveyList');
+			//res.redirect('/survey/surveyList');
+			res.json({success: true, msg: 'Successfully Added New Survey Questions'});
 		}
 	});
 };
 
-/* GET request for edit page - UPDATE Operation*/
+/* GET request for edit pages - UPDATE Operation*/
 module.exports.displaySurveyQuestionEditPage = (req, res, next) => {
 	let id = req.params.id;
-	SurveyQuestions.findById(id, (err, surveyQuestion) => {
+	SurveyQuestions.findById(id, (err, surveyQuestionToEdit) => {
 		if (err) {
 			console.log(err);
 			res.end(err);
 		} else {
-			res.render('CRUD/survey_questions_update', {
+			/*res.render('CRUD/survey_questions_update', {
 				title: 'Edit the Survey Question',
 				Survey: surveyQuestion,
 				// displayName: req.user ? req.user.displayName : '',
-			});
+			});*/
+			res.json({success: true, msg: 'Successfully Displayed Survey Questions to Edit', Survey: surveyQuestionToEdit});
 		}
 	});
 };
 
-/* POST request for edit page - UPDATE Operation*/
+/* POST request for edit pages - UPDATE Operation*/
 module.exports.processSurveyQuestionUpdate = (req, res, next) => {
 	let id = req.params.id;
 	console.log(req.body);
@@ -82,8 +84,24 @@ module.exports.processSurveyQuestionUpdate = (req, res, next) => {
 			console.log(err);
 			res.end(err);
 		} else {
-			res.redirect('/surveyQuestions/surveyQuestionList');
+			//res.redirect('/surveyQuestions/surveyQuestionList');
+			res.json({success: true, msg: 'Successfully Edited Survey Questions', Survey: updatedSurveyQuestion});
 		}
 	});
 };
+
+/* GET request for delete - DELETE Operation*/
+module.exports.performDelete = (req, res, next) => {
+    let id = req.params.id;
+    SurveyQuestions.remove({_id:id},(err)=>{
+        if(err){
+            console.log(err);
+            res.end(err);
+        }else{
+            //res.redirect('/survey/surveyList');
+            res.json({success: true, msg: 'Successfully Deleted Survey Questions'});
+        }
+    });
+}
+
 
