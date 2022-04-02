@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HomeComponent} from "./home/home.component";
 import {PartialsModule} from "../partials/partials.module";
 import {RegisterComponent} from "./register/register.component";
+
 import { SurveyComponent } from './survey/survey.component';
 import { SurveyQuestionComponent } from './survey-question/survey-question.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +21,11 @@ import { RouterModule } from "@angular/router";
     SurveyQuestionComponent,
     SurveyEditComponent,
     SurveyQuestionEditComponent],
+
+@NgModule({
+  imports: [BrowserModule, FormsModule, PartialsModule],
+  declarations: [HomeComponent, RegisterComponent],
+
   exports: [HomeComponent, PartialsModule]
 })
 export class PagesModule{}

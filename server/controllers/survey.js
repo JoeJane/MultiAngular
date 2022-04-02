@@ -105,6 +105,7 @@ module.exports.performDelete = (req, res, next) => {
         }
     });
 }
+
 /* GET request for survey id  */
 module.exports.displaySurveyById = (req, res, next) => {
 	const id = req.params.id;
@@ -116,4 +117,5 @@ module.exports.displaySurveyById = (req, res, next) => {
 		}
 	});
 };
+
 
