@@ -39,7 +39,7 @@ export function jwtTokenGetter(): string {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

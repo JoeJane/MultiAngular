@@ -16,7 +16,7 @@ import { RouterModule } from "@angular/router";
   imports: [BrowserModule, FormsModule, PartialsModule, ReactiveFormsModule,
     HttpClientModule,
     RouterModule],
-  
+
   declarations: [HomeComponent, RegisterComponent, SurveyComponent,
     SurveyQuestionComponent,
     SurveyEditComponent,
