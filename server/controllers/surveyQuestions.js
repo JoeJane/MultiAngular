@@ -104,4 +104,17 @@ module.exports.performDelete = (req, res, next) => {
     });
 }
 
+/* GET request for survey question by id */
+module.exports.getSurveyQuestionById = (req, res, next) => {
+	const id = req.params.id;
+	SurveyQuestions.findById(id, (err, surveyQuestionsList) => {
+		if (err) {
+			return console.error(err);
+		} else {
+			res.json(surveyQuestionsList);
+		}
+	});
+};
+
+
 
