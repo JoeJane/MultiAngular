@@ -16,7 +16,8 @@ export class SurveyComponent implements OnInit {
       this.Survey = res;
     });
   }
-
+  
+  
   deleteSurvey(id: any, i: any) {
     console.log(id);
     if (window.confirm('Do You Want Delete?')) {
