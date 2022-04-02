@@ -29,11 +29,12 @@ export class AuthComponent implements OnInit {
         if(data.success){
           this.auth.storeUserData(data.token, data.user);
           this.router.navigateByUrl('admin/main');
+        } else {
+          this.errorMessage = data.msg;
         }
       });
     } else {
       this.errorMessage = 'Invalid Username or Password';
     }
   }
-
 }

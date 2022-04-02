@@ -8,39 +8,21 @@ let DB = require('../config/db');
 let userModel = require('../models/user');
 let User = userModel.User; // alias
 
-// Implementation for Home pages
-module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : '' });
-}
-
-module.exports.displayLoginPage = (req, res, next) => {
-    // check if the user is not already logged in
-    if (!req.user) {
-        res.render('auth/login', {
-            title: "Login",
-            message: req.flash('loginMessage'),
-            displayName: req.user ? req.user.displayName : ''
-        });
-    } else {
-        res.redirect('/');
-    }
-}
-
 module.exports.processLoginPage = (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         // if server error
         if (err) {
-            return next(err);
+            return res.json({success: false, msg: 'Authentication Error!'});
         }
         // if there is a user login error
         if (!user) {
-            req.flash('loginMessage', 'Authentication Error');
-            return res.redirect('/login');
+            return res.json({success: false, msg: 'Authentication Error!'});
         }
         req.login(user, (err) => {
+            console.log(err)
             // server error
             if (err) {
-                return next(err);
+                return res.json({success: false, msg: 'Authentication Error!'});
             }
 
             // create payload
@@ -63,23 +45,8 @@ module.exports.processLoginPage = (req, res, next) => {
                     username: user.username,
                     email: user.email
                 }, token:  authToken});
-
-            //res.redirect('/book');
         });
     })(req, res, next);
-}
-
-module.exports.displayRegisterPage = (req, res, next) => {
-    // check if the user is not already logged in
-    if (!req.user) {
-        res.render('auth/register', {
-            title: "Register",
-            message: req.flash('registerMessage'),
-            displayName: req.user ? req.user.displayName : ''
-        });
-    } else {
-        return res.redirect('/');
-    }
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
@@ -96,9 +63,7 @@ module.exports.processRegisterPage = (req, res, next) => {
 
     User.register(newUser, req.body.password, (err) => {
         if (err) {
-
             res.json({success: false, msg: 'Registration Error: User Already Exist!'});
-
         } else {
             res.json({success: true, msg: 'User Registered Successfully!'});
         }

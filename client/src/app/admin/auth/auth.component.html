@@ -1,12 +1,13 @@
 <main class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-sm-8 offset-sm-1">
-      <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf='errorMessage != null'>{{ errorMessage }}</div>
+    <div class="offset-md-4 col-md-4 mt-5">
+      <div class="alert alert-danger text-center" *ngIf='errorMessage != null'>{{ errorMessage }}</div>
+
       <h1>Please Login</h1>
-      <form autocomplete='off' #form='ngForm' (ngSubmit)='authenticate(form)'>
+      <form autocomplete='off' #form='ngForm' (ngSubmit)='authenticate(form)' class="row g-3">
 
         <fieldset class="form-group">
-          <label for="username">Username:</label>
+          <label for="username" class="form-label">User Name:</label>
           <input type="text" class="form-control"
                  [(ngModel)]='user.username'
                  name='username' placeholder='Enter Username'
@@ -14,7 +15,7 @@
         </fieldset>
 
         <fieldset class="form-group">
-          <label for="password">Password:</label>
+          <label for="password" class="form-label">Password:</label>
           <input type="password" class="form-control"
                  [(ngModel)]='user.password'
                  name='password' placeholder='Enter Password'
@@ -22,18 +23,13 @@
         </fieldset>
 
         <fieldset class="col-md-12">
-          <a href="/register" class="btn btn-link float-end">Register Here</a>
-        </fieldset>
-
-        <fieldset class="form-group float-end">
-          <button class='btn btn-primary m-1' type='submit'>
+          <button class='btn btn-primary col-12' type='submit'>
             <i class="fas fa-sign-in-alt"></i>
             Log In
           </button>
-          <button class='btn btn-secondary m-1' routerLink='/home'>
-            <i class="fas fa-undo"></i>
-            Cancel
-          </button>
+
+          <!--<a href="/" class="btn btn-warning">Cancel</a>-->
+          <a href="/register" class=" btn btn-link float-end">Register Here</a>
         </fieldset>
 
 
