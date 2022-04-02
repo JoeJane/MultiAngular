@@ -97,8 +97,8 @@ passport.use(strategy);
 
 
 app.use('/api', indexRouter);
-app.use('/survey', surveyRouter);
-app.use('/surveyQuestions', surveyQuestionsRouter);
+app.use('/api/survey', surveyRouter);
+app.use('/api/surveyQuestions', surveyQuestionsRouter);
 
 
 // catch 404 and forward to error handler

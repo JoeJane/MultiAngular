@@ -5,27 +5,30 @@ let router = express.Router();
 //Store the model in a variable
 let Survey = require('../models/survey');
 
-/* GET request for survey */
+/* GET request for survey  */
 module.exports.displaySurveyList = (req, res, next) => {
     Survey.find((err, surveyList) =>{
         if(err){
             return console.error(err);
         }else{
-            res.render('CRUD/list', {
+            /*res.render('CRUD/list', {
                 title: 'Survey Templates', 
                 Survey: surveyList 
                 //displayName:req.user ? req.user.displayName : ''
-            })
+            })*/
+            res.json(surveyList);
         }
     });
 }
 
 /* GET request for create pages - CREATE Operation*/
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('CRUD/add', {
+    /*res.render('CRUD/add', {
         title: 'Add Survey' 
         //displayName: req.user ? req.user.displayName : ''
-    })          
+    })*/
+    
+    res.json({success: true, msg: 'Successfully Displayed Add Survey Page'});
 }
 
 /* POST request for add pages - CREATE Operation*/
@@ -46,7 +49,9 @@ module.exports.processAddPage = (req, res, next) => {
         else
         {
             // refresh the survey list
-            res.redirect('/survey/surveyList');
+            //res.redirect('/survey/surveyList');
+
+            res.json({success: true, msg: 'Successfully Added New Survey'});
         }
     });
 
@@ -60,7 +65,8 @@ module.exports.displayEditPage = (req, res, next) => {
             console.log(err);
             res.end(err);
         }else{
-            res.render('CRUD/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
+            //res.render('CRUD/edit', {title:'Edit the Survey', Survey: surveyToEdit, displayName:req.user ? req.user.displayName : ''})
+            res.json({success: true, msg: 'Successfully Displayed Survey to Edit', Survey: surveyToEdit});
         }
     });
 }
@@ -80,7 +86,8 @@ module.exports.processEditPage = (req, res, next) => {
             console.log(err);
             res.end(err);
         }else{
-            res.redirect('/survey/surveyList')
+            //res.redirect('/survey/surveyList')
+            res.json({success: true, msg: 'Successfully Edited Survey', Survey: updatedSurvey});
         }
     });
 }
@@ -93,7 +100,8 @@ module.exports.performDelete = (req, res, next) => {
             console.log(err);
             res.end(err);
         }else{
-            res.redirect('/survey/surveyList');
+            //res.redirect('/survey/surveyList');
+            res.json({success: true, msg: 'Successfully Deleted Survey'});
         }
     });
 }
