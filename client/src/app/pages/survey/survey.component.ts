@@ -1,5 +1,8 @@
 import { ApiserviceService } from './../../apiservice.service';
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../model/auth.service";
+import {Router} from "@angular/router";
+import {User} from "../../model/user.model";
 
 @Component({
   selector: 'app-survey',
@@ -8,13 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SurveyComponent implements OnInit {
   Survey: any = [];
-  constructor(private apiService: ApiserviceService) {}
+  // @ts-ignore
+  user: User;
+
+  constructor(private apiService: ApiserviceService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.apiService.GetSurvey().subscribe((res) => {
       console.log(res);
       this.Survey = res;
     });
+    this.user = new User();
   }
 
   deleteSurvey(id: any, i: any) {
@@ -25,4 +32,15 @@ export class SurveyComponent implements OnInit {
       });
     }
   }
+
+  isLoggedIn(): boolean {
+    const result = this.authService.authenticated;
+    if (result) {
+      // @ts-ignore
+      this.user = JSON.parse(localStorage.getItem('user'));
+    }
+
+    return result;
+  }
+
 }

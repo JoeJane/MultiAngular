@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
+import {User} from "../../model/user.model";
+import {AuthService} from "../../model/auth.service";
 
 @Component({
   selector: 'app-survey-question',
@@ -8,7 +10,10 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 })
 export class SurveyQuestionComponent implements OnInit {
   SurveyQuestion: any = [];
-  constructor(private apiService: ApiserviceService) {}
+  // @ts-ignore
+  user: User;
+
+  constructor(private apiService: ApiserviceService,  private authService: AuthService) {}
 
   ngOnInit(): void {
     this.apiService.GetSurveyQuestion().subscribe((res) => {
@@ -25,4 +30,15 @@ export class SurveyQuestionComponent implements OnInit {
       });
     }
   }
+
+  isLoggedIn(): boolean {
+    const result = this.authService.authenticated;
+    if (result) {
+      // @ts-ignore
+      this.user = JSON.parse(localStorage.getItem('user'));
+    }
+
+    return result;
+  }
+
 }

@@ -10,7 +10,7 @@
           <th scope="col">title</th>
           <th scope="col">userId</th>
           <th scope="col">Description</th>
-          <th class="text-center" scope="col">Action</th>
+          <th class="text-center" scope="col" *ngIf='isLoggedIn()'>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +19,7 @@
           <td>{{survey.title}}</td>
           <td>{{survey.userId}}</td>
           <td>{{survey.description}}</td>
-          <td class="text-center">
+          <td class="text-center" *ngIf='isLoggedIn()'>
             <a class="btn btn-sm btn-primary mx-3" routerLink="/survey-edit/{{survey._id}}">Edit</a>
             <button class="btn btn-sm btn-danger" (click)="deleteSurvey(survey._id, i)">Delete</button>
         </tr>
