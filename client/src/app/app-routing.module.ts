@@ -7,6 +7,7 @@ import { SurveyQuestionEditComponent } from './pages/survey-question-edit/survey
 import { SurveyEditComponent } from './pages/survey-edit/survey-edit.component';
 import { SurveyQuestionComponent } from './pages/survey-question/survey-question.component';
 import { SurveyComponent } from './pages/survey/survey.component';
+import {SurveyQuestionsComponent} from "./pages/surveyQuestions/surveyQuestions.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
