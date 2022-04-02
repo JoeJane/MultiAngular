@@ -1,53 +1,29 @@
-<main class="container">
-    <div class="container-fluid">
-        <div class="row text-white">
-            <div class="col-9 bg-success p-2">
-                {{ surveys.length }} Surveys
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="offset-md-3 col-md-6">
-            <!--Adding form-->
-            <br>
-            <br>
-            <div class="jumbotron">
-                <h1 class="display-4">Add a survey</h1>
-            </div>
-            <br>
-            <form class="form" method="POST">
-                <div class="form-group">
-                    <label for="titleTextField">Title: </label>
-                    <input type="text" class="form-control" 
-                    id="titleTextField" 
-                    placeholder="Enter the Title"
-                    name="title"
-                    required>
-                </div>
-                <div class="form-group">
-                    <label for="descriptionTextField">Description: </label>
-                    <input type="text" class="form-control" 
-                    id="descriptionTextField" 
-                    placeholder="Enter the Description"
-                    name="description"
-                    required>
-                </div>
-                <div class="form-group">
-                    <label for="dateField">Date: </label>
-                    <input type="date" class="form-control" 
-                    id="dateField" 
-                    placeholder="Enter the date"
-                    name="date"
-                    required>
-                </div>
-                <br>
-                <!--Adding buttons to perform submit, cancel and delete actions-->
-                <button class="btn btn-success" type='submit'><i class="fas fa-edit"></i> Submit</button>&nbsp;&nbsp;
-                <a href="/api/survey/surveyList" class="btn btn-warning"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/api/survey/surveyQuestions" class="btn btn-success"> Create questions</a>                 
-            </form>
-        </div>
-    </div>
-</main>
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Survey List</h2>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">surveyId</th>
+          <th scope="col">title</th>
+          <th scope="col">userId</th>
+          <th scope="col">Description</th>
+          <th class="text-center" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let survey of Survey; let i = index">
+          <th scope="row">{{survey.surveyId}}</th>
+          <td>{{survey.title}}</td>
+          <td>{{survey.userId}}</td>
+          <td>{{survey.description}}</td>
+          <td class="text-center">
+            <a class="btn btn-sm btn-primary mx-3" routerLink="/survey-edit/{{survey._id}}">Edit</a>
+            <button class="btn btn-sm btn-danger" (click)="deleteSurvey(survey._id, i)">Delete</button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

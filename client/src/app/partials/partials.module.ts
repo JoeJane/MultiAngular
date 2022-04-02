@@ -4,9 +4,10 @@ import { FormsModule } from "@angular/forms";
 import {FooterComponent} from "./footer/footer.component";
 import {HeaderComponent} from "./header/header.component";
 import {BasePageComponent} from "./base-page/base-page.component";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule],
+  imports: [ BrowserModule, FormsModule, RouterModule],
   declarations: [FooterComponent, HeaderComponent, BasePageComponent],
   exports: [FooterComponent, HeaderComponent, BasePageComponent]
 })
