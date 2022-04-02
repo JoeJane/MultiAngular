@@ -5,7 +5,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {map} from "rxjs/operators";
 import {User} from "./user.model";
 
-const PROTOCOL = 'https';
+const PROTOCOL = 'http';
 const PORT = 3000;
 
 @Injectable()
@@ -25,8 +25,8 @@ export class RestDataSource {
 
   constructor(private http: HttpClient,
               private jwtService: JwtHelperService) {
-    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    this.baseUrl = `https://multiangular.herokuapp.com/api/`;
+    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+    // this.baseUrl = `https://multiangular.herokuapp.com/api/`;
     this.user = new User();
   }
 
