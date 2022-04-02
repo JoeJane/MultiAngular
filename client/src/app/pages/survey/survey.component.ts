@@ -1,32 +1,33 @@
+import { ApiserviceService } from './../../apiservice.service';
 import { Component, OnInit } from '@angular/core';
 import { Survey } from '../../model/survey.model';
-import { SurveyRepository } from '../../model/survey.repository';
-import {BasePageComponent} from "../../partials/base-page/base-page.component";
-import {ActivatedRoute} from "@angular/router";
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.css']
+  styleUrls: ['./survey.component.css'],
 })
-export class SurveyComponent {
+export class SurveyComponent implements OnInit {
+  Survey: any = [];
+  constructor(private apiService: ApiserviceService) {}
 
-    /*constructor(route: ActivatedRoute) {
-        super(route);
-      }*/
-  constructor(private repository: SurveyRepository,
-              private router: Router) { }
-
-    /*override ngOnInit(): void {
-    }*/
-  /*ngOnInit(): void 
-  {
+  ngOnInit(): void {
+    this.apiService.GetSurvey().subscribe((res) => {
+      console.log(res);
+      this.Survey = res;
+    });
   }
-*/
-  get surveys(): Survey[]
-  {
+
+  get surveys(): Survey[] {
     return this.repository.getSurveys();
   }
-
+  
+  deleteSurvey(id: any, i: any) {
+    console.log(id);
+    if (window.confirm('Do You Want Delete?')) {
+      this.apiService.deleteSurvey(id).subscribe(() => {
+        this.Survey.splice(i, 1);
+      });
+    }
+  }
 }

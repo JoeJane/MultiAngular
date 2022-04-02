@@ -10,8 +10,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { BasePageComponent } from './partials/base-page/base-page.component';
 import {PagesModule} from "./pages/pages.module";
 import {JwtModule} from "@auth0/angular-jwt";
-import {FormsModule} from "@angular/forms";
+
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ModelModule} from "./model/model.module";
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
 
 export function jwtTokenGetter(): string {
   // @ts-ignore
@@ -33,6 +37,9 @@ export function jwtTokenGetter(): string {
       }
     }),
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
     SurveyModule
   ],
   providers: [],

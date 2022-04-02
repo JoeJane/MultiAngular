@@ -6,6 +6,7 @@ import {map} from "rxjs/operators";
 import {User} from "./user.model";
 import { Survey } from './survey.model';
 
+
 const PROTOCOL = 'http';
 const PORT = 3000;
 
@@ -35,7 +36,7 @@ export class RestDataSource {
   {
     return this.http.get<Survey[]>(this.baseUrl + 'survey/surveyList');
   }
-
+ 
   addSurvey(survey: Survey): Observable<Survey>
   {
     //this.loadToken();
@@ -80,4 +81,3 @@ export class RestDataSource {
 
 
 }
-

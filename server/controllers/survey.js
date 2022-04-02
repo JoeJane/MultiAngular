@@ -105,3 +105,17 @@ module.exports.performDelete = (req, res, next) => {
         }
     });
 }
+
+/* GET request for survey id  */
+module.exports.displaySurveyById = (req, res, next) => {
+	const id = req.params.id;
+	Survey.findById(id, (err, surveyList) => {
+		if (err) {
+			return console.error(err);
+		} else {
+			res.json(surveyList);
+		}
+	});
+};
+
+
