@@ -1,4 +1,11 @@
 <main class="container">
+    <div class="container-fluid">
+        <div class="row text-white">
+            <div class="col-9 bg-success p-2">
+                {{ surveys.length }} Surveys
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="offset-md-3 col-md-6">
             <!--Adding form-->
@@ -36,10 +43,10 @@
                 <br>
                 <!--Adding buttons to perform submit, cancel and delete actions-->
                 <button class="btn btn-success" type='submit'><i class="fas fa-edit"></i> Submit</button>&nbsp;&nbsp;
-                <a href="api/survey/surveyList" class="btn btn-warning"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>&nbsp;&nbsp;
+                <a href="/api/survey/surveyList" class="btn btn-warning"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="api/survey/surveyQuestions" class="btn btn-success"> Create questions</a>                 
+                <a href="/api/survey/surveyQuestions" class="btn btn-success"> Create questions</a>                 
             </form>
         </div>
     </div>

@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Survey } from './survey.model';
-import { RestDataSource } from './rest.datasource';
+import { StaticDataSource } from './static.datasource';
+//import { RestDataSource } from './rest.datasource';
 
 @Injectable()
 export class SurveyRepository
 {
   private surveys: Survey[] = [];
+  //private titles: string[] = [];
 
-  constructor(private dataSource: RestDataSource)
+  constructor(private dataSource: StaticDataSource)
   {
     dataSource.getSurveys().subscribe(data => {
       this.surveys = data;
+      /*this.titles = data.map(p=>p.title)
+        .filter((t, index, array) => array.indexOf(t) === index).sort();*/
     });
   }
 
-  /*getSurveys(author: string = null): Survey[]
+  getSurveys(): Survey[]
   {
-    return this.surveys
-      .filter(b => author == null || author === b.author);
-  }*/
+    return this.surveys;
+      //.filter(b => author == null || author === b.author);
+  }
 
+  getSurvey(id: number): Survey
+  {
+    return this.surveys.find(s => s._id === id)!;
+  }
+/*
   saveSurvey(savedSurvey: Survey): void
   {
     if (savedSurvey._id === null || savedSurvey._id === 0 || savedSurvey._id === undefined)
@@ -33,8 +42,8 @@ export class SurveyRepository
         console.log('Error adding the survey');
         /*this.dataSource.updateSurvey(savedSurvey).subscribe(survey => {
         this.surveys.splice(this.surveys.findIndex(b => b._id === savedSurvey._id), 1, savedSurvey);
-      });*/
+      });
     }
   }
-
+*/
 }

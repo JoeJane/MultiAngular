@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./pages/home/home.component";
+import {StoreFirstGuard} from "./guards/storeFirstGuard";
+import {RegisterComponent} from "./pages/register/register.component";
 import {SurveyComponent} from "./pages/survey/survey.component";
 import {SurveyQuestionsComponent} from "./pages/surveyQuestions/surveyQuestions.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
+  {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+  {path: 'register', component: RegisterComponent, data: {title: 'Register User'}},
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m=>m.AdminModule)},
   {path: 'api/survey/add', component: SurveyComponent, data: {title: 'Survey Management'}},
   {path: 'api/survey/surveyQuestions', component: SurveyQuestionsComponent, data: {title: 'Survey Questions'}},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -14,6 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [StoreFirstGuard]
 })
 export class AppRoutingModule { }

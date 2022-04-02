@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {BasePageComponent} from "../../partials/base-page/base-page.component";
+import { Survey } from '../../model/survey.model';
 import { SurveyRepository } from '../../model/survey.repository';
+import {BasePageComponent} from "../../partials/base-page/base-page.component";
 import {ActivatedRoute} from "@angular/router";
 import { Router } from '@angular/router';
 
@@ -9,17 +10,23 @@ import { Router } from '@angular/router';
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css']
 })
-export class SurveyComponent extends BasePageComponent implements OnInit {
+export class SurveyComponent {
 
-    constructor(route: ActivatedRoute) {
+    /*constructor(route: ActivatedRoute) {
         super(route);
-      }
-  /*constructor(private repository: SurveyRepository,
-    private router: Router) { }*/
+      }*/
+  constructor(private repository: SurveyRepository,
+              private router: Router) { }
 
-    override ngOnInit(): void {
-    }
-    /*ngOnInit(): void {
+    /*override ngOnInit(): void {
     }*/
+  /*ngOnInit(): void 
+  {
+  }
+*/
+  get surveys(): Survey[]
+  {
+    return this.repository.getSurveys();
+  }
 
 }
