@@ -4,10 +4,16 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let cors = require('cors');
 
 // module for Authentication
 let session = require('express-session');
 let passport = require('passport');
+
+let passportJWT = require('passport-jwt');
+let JWTStrategy = passportJWT.Strategy;
+let ExtractJWT = passportJWT.ExtractJwt;
+
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
@@ -44,6 +50,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public'))); // which ever inside public folder is available public
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+app.use(cors());
+
 // setup express session
 app.use(session({
   secret: "SomeSecret",
@@ -70,6 +78,22 @@ passport.use(User.createStrategy());
 // serialize and deserialize the user info
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+let jwtOptions = {}
+jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = DB.Secret;
+
+let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
+  User.findById(jwt_payload.id)
+      .then(user => {
+        return done(null, user);
+      })
+      .catch(err => {
+        return done(err, false);
+      })
+});
+
+passport.use(strategy);
 
 
 app.use('/api', indexRouter);

@@ -1,6 +1,4 @@
 let express = require('express');
-let mongoose = require('mongoose');
-let router = express.Router();
 
 //Store the model in a variable
 let SurveyQuestions = require('../models/surveyQuestions');
