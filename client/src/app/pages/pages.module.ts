@@ -9,7 +9,7 @@ import {RegisterComponent} from "./register/register.component";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, PartialsModule],
-  declarations: [HomeComponent, RegisterComponentt, SurveyComponent, SurveyQuestionsComponent],
+  declarations: [HomeComponent, RegisterComponent, SurveyComponent, SurveyQuestionsComponent],
   exports: [HomeComponent, PartialsModule, SurveyComponent, SurveyQuestionsComponent]
 })
 export class PagesModule{}
