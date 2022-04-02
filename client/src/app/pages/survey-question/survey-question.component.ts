@@ -10,8 +10,6 @@ import {AuthService} from "../../model/auth.service";
 })
 export class SurveyQuestionComponent implements OnInit {
   SurveyQuestion: any = [];
-  // @ts-ignore
-  user: User;
 
   constructor(private apiService: ApiserviceService,  private authService: AuthService) {}
 
@@ -32,13 +30,7 @@ export class SurveyQuestionComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    const result = this.authService.authenticated;
-    if (result) {
-      // @ts-ignore
-      this.user = JSON.parse(localStorage.getItem('user'));
-    }
-
-    return result;
+    return this.authService.authenticated;
   }
 
 }

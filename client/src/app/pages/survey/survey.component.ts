@@ -11,8 +11,6 @@ import {User} from "../../model/user.model";
 })
 export class SurveyComponent implements OnInit {
   Survey: any = [];
-  // @ts-ignore
-  user: User;
 
   constructor(private apiService: ApiserviceService, private authService: AuthService) {}
 
@@ -21,7 +19,6 @@ export class SurveyComponent implements OnInit {
       console.log(res);
       this.Survey = res;
     });
-    this.user = new User();
   }
 
   deleteSurvey(id: any, i: any) {
@@ -34,13 +31,7 @@ export class SurveyComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    const result = this.authService.authenticated;
-    if (result) {
-      // @ts-ignore
-      this.user = JSON.parse(localStorage.getItem('user'));
-    }
-
-    return result;
+    return this.authService.authenticated;;
   }
 
 }
