@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SurveyModule } from './pages/survey/survey.module';
 import { HeaderComponent } from './partials/header/header.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -35,12 +36,11 @@ export function jwtTokenGetter(): string {
         tokenGetter: jwtTokenGetter
       }
     }),
-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-
+    SurveyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

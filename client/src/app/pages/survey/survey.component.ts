@@ -1,5 +1,6 @@
 import { ApiserviceService } from './../../apiservice.service';
 import { Component, OnInit } from '@angular/core';
+import { Survey } from '../../model/survey.model';
 
 @Component({
   selector: 'app-survey',
@@ -17,6 +18,10 @@ export class SurveyComponent implements OnInit {
     });
   }
 
+  get surveys(): Survey[] {
+    return this.repository.getSurveys();
+  }
+  
   deleteSurvey(id: any, i: any) {
     console.log(id);
     if (window.confirm('Do You Want Delete?')) {

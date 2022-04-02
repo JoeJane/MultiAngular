@@ -26,14 +26,10 @@
             Survey Question</a>
         </li>
 
-
-        <li *ngIf='isLoggedIn()' class="nav-item">
-          <a class="nav-link <%= title === 'Survey List' ? 'active' : '' %>" href="/survey/surveyList"><i
+        <li class="nav-item">
+          <a class="nav-link" href="/api/survey/add"><i
             class="fa-solid fa-house"></i> Survey Management</a>
-
         </li>
-
-
 
         <li *ngIf='isLoggedIn()'
             class="navbar-text text-success ms-2 me-2 d-none d-lg-inline">
@@ -44,7 +40,6 @@
           <a (click)='onLogoutClick()' href='/logout' class="nav-link">
             <i class="fas fa-lg fa-sign-out-alt"></i> Logout </a>
         </li>
-
 
         <li *ngIf='!isLoggedIn()' class="nav-item">
           <a class="nav-link" href="/login"><i class="fas fa-lg fa-sign-in-alt"></i> Login </a>
