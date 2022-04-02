@@ -21,7 +21,7 @@ import { RouterModule } from "@angular/router";
     SurveyQuestionComponent,
     SurveyEditComponent,
     SurveyQuestionEditComponent],
-
+    
   exports: [HomeComponent, PartialsModule]
 })
 export class PagesModule{}

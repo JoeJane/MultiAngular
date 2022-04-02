@@ -3,11 +3,11 @@ import {BasePageComponent} from "../../partials/base-page/base-page.component";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-surveyQuestions',
-  templateUrl: './surveyQuestions.component.html',
-  styleUrls: ['./surveyQuestions.component.css']
+  selector: 'app-survey-question-add',
+  templateUrl: './survey-question-add.component.html',
+  styleUrls: ['./survey-question-add.component.css']
 })
-export class SurveyQuestionsComponent extends BasePageComponent implements OnInit {
+export class SurveyQuestionsAddComponent extends BasePageComponent implements OnInit {
 
   constructor(route: ActivatedRoute) {
     super(route);

@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {map} from "rxjs/operators";
 import {User} from "./user.model";
-import { Survey } from './survey.model';
+
 
 
 const PROTOCOL = 'http';
@@ -30,18 +30,6 @@ export class RestDataSource {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
     // this.baseUrl = `https://multiangular.herokuapp.com/api/`;
     this.user = new User();
-  }
-
-  getSurveys(): Observable<Survey[]>
-  {
-    return this.http.get<Survey[]>(this.baseUrl + 'survey/surveyList');
-  }
- 
-  addSurvey(survey: Survey): Observable<Survey>
-  {
-    //this.loadToken();
-    console.log(JSON.stringify(survey));
-    return this.http.post<Survey>(this.baseUrl + 'survey/add', survey, this.httpOptions);
   }
 
   authenticate(user: User): Observable<any> {
