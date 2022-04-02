@@ -22,10 +22,6 @@ import { RouterModule } from "@angular/router";
     SurveyEditComponent,
     SurveyQuestionEditComponent],
 
-@NgModule({
-  imports: [BrowserModule, FormsModule, PartialsModule],
-  declarations: [HomeComponent, RegisterComponent],
-
   exports: [HomeComponent, PartialsModule]
 })
 export class PagesModule{}
