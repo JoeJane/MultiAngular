@@ -29,7 +29,14 @@ let surveyModel = mongoose.Schema(
                 default: '',
                 trim: true,
                 required: 'Description is required'
-            }
+            },
+        date:
+        {
+            type: Date,
+            default: '',
+            trim: true,
+            required: 'Date is required'
+        }
     },
     {
         collection: "survey"

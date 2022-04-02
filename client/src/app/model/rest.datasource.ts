@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {map} from "rxjs/operators";
 import {User} from "./user.model";
+import { Survey } from './survey.model';
 
 const PROTOCOL = 'http';
 const PORT = 3000;
@@ -14,6 +15,7 @@ export class RestDataSource {
   baseUrl: string;
   // @ts-ignore
   authToken: string;
+  survey!: Survey
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -65,6 +67,15 @@ export class RestDataSource {
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.authToken);
   }
 
+  getSurveys(): Observable<Survey[]> {
+    return this.http.get<Survey[]>(this.baseUrl + 'survey/surveyList');
+  }
+
+  addSurvey(survey: Survey): Observable<Survey> {
+    //this.loadToken();
+    console.log(JSON.stringify(survey));
+    return this.http.post<Survey>(this.baseUrl + 'survey/add', survey, this.httpOptions);
+  }
 
 }
 
