@@ -11,17 +11,14 @@ import {User} from "../../model/user.model";
 })
 export class SurveyComponent implements OnInit {
   Survey: any = [];
-  // @ts-ignore
-  user: User;
 
-  constructor(private apiService: ApiserviceService, private authService: AuthService) {}
+  constructor(private apiService: ApiserviceService, public authService: AuthService) {}
 
   ngOnInit(): void {
     this.apiService.GetSurvey().subscribe((res) => {
       console.log(res);
       this.Survey = res;
     });
-    this.user = new User();
   }
 
   deleteSurvey(id: any, i: any) {
@@ -31,16 +28,6 @@ export class SurveyComponent implements OnInit {
         this.Survey.splice(i, 1);
       });
     }
-  }
-
-  isLoggedIn(): boolean {
-    const result = this.authService.authenticated;
-    if (result) {
-      // @ts-ignore
-      this.user = JSON.parse(localStorage.getItem('user'));
-    }
-
-    return result;
   }
 
 }
