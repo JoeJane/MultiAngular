@@ -8,34 +8,34 @@
                 <h1 class="display-4">Add a survey</h1>
             </div>
             <br>
-            <form class="form" method="POST">
+            <form #form="ngForm" (ngSubmit)='save(form)' method="POST" novalidate autocomplete="off">
                 <div class="form-group">
-                    <label for="titleTextField">Title: </label>
+                    <label for="title">Title: </label>
                     <input type="text" class="form-control" 
-                    id="titleTextField" 
+                    id="title" 
                     placeholder="Enter the Title"
                     name="title"
-                    required>
+                    required [(ngModel)]='survey.title'>
                 </div>
                 <div class="form-group">
-                    <label for="descriptionTextField">Description: </label>
+                    <label for="description">Description: </label>
                     <input type="text" class="form-control" 
-                    id="descriptionTextField" 
+                    id="description" 
                     placeholder="Enter the Description"
                     name="description"
-                    required>
+                    required [(ngModel)]='survey.description'>
                 </div>
                 <div class="form-group">
-                    <label for="dateField">Date: </label>
+                    <label for="date">Date: </label>
                     <input type="date" class="form-control" 
-                    id="dateField" 
+                    id="date" 
                     placeholder="Enter the date"
                     name="date"
-                    required>
+                    required [(ngModel)]='survey.date'>
                 </div>
                 <br>
                 <!--Adding buttons to perform submit, cancel and delete actions-->
-                <button class="btn btn-success" type='submit'><i class="fas fa-edit"></i> Submit</button>&nbsp;&nbsp;
+                <button class="btn btn-success" type='submit'> Submit</button>&nbsp;&nbsp;
                 <a href="/api/survey/surveyList" class="btn btn-warning"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
