@@ -3,9 +3,7 @@ let express = require('express');
 let router = express.Router();
 
 let indexController = require('../controllers/index');
-let surveyController = require('../controllers/survey');
-let surveyQuestionsController = require('../controllers/surveyQuestions');
-
+let passport = require('passport');
 
 /* GET Home pages. */
 //router.get('/', indexController.displayHomePage);
@@ -22,6 +20,13 @@ router.post('/login', indexController.processLoginPage);
 
 // POST Route for processing Register pages
 router.post('/register', indexController.processRegisterPage);
+
+/* GET request for edit pages - UPDATE Operation*/
+router.get('/user/edit/:id', passport.authenticate('jwt', {session: false}), indexController.displayEditRegistrationPage);
+
+/* POST request for edit pages - UPDATE Operation*/
+router.post('/user/edit/:id', passport.authenticate('jwt', {session: false}), indexController.processEditRegistrationPage);
+
 
 // GET to perform User Logout
 router.get('/logout', indexController.performLogout);
