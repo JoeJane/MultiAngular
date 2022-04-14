@@ -7,9 +7,10 @@ import { SurveyQuestionEditComponent } from './pages/survey-question-edit/survey
 import { SurveyEditComponent } from './pages/survey-edit/survey-edit.component';
 import { SurveyQuestionComponent } from './pages/survey-question/survey-question.component';
 import { SurveyComponent } from './pages/survey/survey.component';
-import { SurveyAddComponent } from './pages/survey-add/survey-add.component';
-import { SurveyQuestionsAddComponent } from './pages/survey-question-add/survey-question-add.component';
 
+import { SurveyQuestionsAddComponent } from './pages/survey-question-add/survey-question-add.component';
+import { SurveyDashboardComponent } from './pages/survey-dashboard/survey-dashboard.component';
+import { AddSurveyComponent } from "./pages/add-survey/add-survey.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
@@ -30,13 +31,18 @@ const routes: Routes = [
     data: { title: 'Survey Question' },
   },
   {
+    path: 'survey-dashboard',
+    component: SurveyDashboardComponent,
+    data: { title: 'Survey Dashboard' },
+  },
+  {
     path: 'survey-question-edit/:id',
     component: SurveyQuestionEditComponent,
     data: { title: 'Survey Question Edit' },
   },
   {
     path: 'api/survey/add',
-    component: SurveyAddComponent,
+    component: AddSurveyComponent,
     data: { title: 'Survey Management' },
   },
   {

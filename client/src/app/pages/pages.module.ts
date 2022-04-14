@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SurveyEditComponent } from './survey-edit/survey-edit.component';
 import { SurveyQuestionEditComponent } from './survey-question-edit/survey-question-edit.component';
 import { RouterModule } from "@angular/router";
+import { AddSurveyComponent } from './add-survey/add-survey.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, PartialsModule, ReactiveFormsModule,
@@ -20,7 +21,8 @@ import { RouterModule } from "@angular/router";
   declarations: [HomeComponent, RegisterComponent, SurveyComponent,
     SurveyQuestionComponent,
     SurveyEditComponent,
-    SurveyQuestionEditComponent],
+    SurveyQuestionEditComponent,
+    AddSurveyComponent],
     
   exports: [HomeComponent, PartialsModule]
 })

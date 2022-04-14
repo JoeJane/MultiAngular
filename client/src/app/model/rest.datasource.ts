@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {User} from "./user.model";
+import { Survey } from './survey.model';
 
 const PROTOCOL = 'http';
 const PORT = 3000;
@@ -37,6 +38,12 @@ export class RestDataSource {
     return this.http.post<User>(this.baseUrl + 'register', user, this.httpOptions);
   }
 
+  addSurvey(survey: Survey): Observable<Survey> {
+    //this.loadToken();
+    console.log(JSON.stringify(survey));
+    return this.http.post<Survey>(this.baseUrl + 'survey/add', survey, this.httpOptions); 
+  }
+  
   displayUserProfile(id: string): Observable<User> {
     this.loadToken();
     return this.http.get<User>(`${this.baseUrl}user/edit/${id}`, this.httpOptions);
