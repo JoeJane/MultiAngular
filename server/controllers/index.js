@@ -30,7 +30,8 @@ module.exports.processLoginPage = (req, res, next) => {
                 id: user._id,
                 displayName: user.displayName,
                 username: user.username,
-                email: user.email
+                email: user.email,
+                isAdmin: user.isAdmin
             }
 
             // sign the payload
@@ -38,12 +39,14 @@ module.exports.processLoginPage = (req, res, next) => {
                 expiresIn: 604800  // 1 week
             });
 
+            console.log("UserID: " + user._id);
             /* Getting ready to convert API*/
             return res.json({success: true, msg: 'User Logged in Successfully!', user: {
-                    id: user._id,
+                    _id: user._id,
                     displayName: user.displayName,
                     username: user.username,
-                    email: user.email
+                    email: user.email,
+                    isAdmin: user.isAdmin
                 }, token:  authToken});
         });
     })(req, res, next);
@@ -57,7 +60,8 @@ module.exports.processRegisterPage = (req, res, next) => {
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
-        displayName: req.body.displayName
+        displayName: req.body.displayName,
+        isAdmin: false
     });
 
 
@@ -69,6 +73,44 @@ module.exports.processRegisterPage = (req, res, next) => {
         }
     })
 }
+
+module.exports.displayEditRegistrationPage = (req, res, next) => {
+    let id = req.params.id;
+
+    User.findById(id, (err, profileToEdit) => {
+        if(err){
+            console.log(err);
+            res.json({success: false, msg: 'User does not Exist!'});
+        } else {
+            // show the edit view
+            res.json({success: true, msg: 'User Logged in Successfully!', user: profileToEdit});
+
+        }
+    });
+}
+
+module.exports.processEditRegistrationPage = (req, res, next) => {
+    let id = req.params.id;
+    let updatedUser = User({
+        "_id": id,
+        "username": req.body.username,
+        "password": req.body.password,
+        "email": req.body.email,
+        "displayName": req.body.displayName,
+        "isAdmin": req.body.isAdmin || false
+    });
+
+    User.updateOne({_id: id}, updatedUser, (err) => {
+        if(err){
+            console.log(err);
+            res.json({success: false, msg: 'Error while updating!'});
+        } else {
+            // refresh the book list
+            res.json({success: true, msg: 'Successfully Edited User Profile', book: updatedUser});
+        }
+    });
+}
+
 
 module.exports.performLogout = (req, res, next) => {
     req.logout();

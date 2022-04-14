@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {RestDataSource} from './rest.datasource';
-import {JwtHelperService} from '@auth0/angular-jwt';
-
 import {User} from './user.model';
 import {Survey} from './survey.model';
 
@@ -20,6 +18,14 @@ export class AuthService {
     return this.datasource.authenticate(user);
   }
 
+  displayUserProfile(id: string): Observable<any>{
+    return this.datasource.displayUserProfile(id);
+  }
+
+  updateUserProfile(user: User): Observable<any>{
+    return this.datasource.updateUserProfile(user);
+  }
+
   register(user: User): Observable<any> {
     return this.datasource.register(user);
   }
@@ -35,6 +41,10 @@ export class AuthService {
 
   get authenticated(): boolean {
     return this.datasource.loggedIn();
+  }
+
+  isAdmin(): boolean {
+    return this.datasource.isAdmin();
   }
 
   logout(): Observable<any> {
