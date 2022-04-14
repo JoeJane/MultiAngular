@@ -9,7 +9,7 @@ import { SurveyQuestionComponent } from './pages/survey-question/survey-question
 import { SurveyComponent } from './pages/survey/survey.component';
 import { SurveyAddComponent } from './pages/survey-add/survey-add.component';
 import { SurveyQuestionsAddComponent } from './pages/survey-question-add/survey-question-add.component';
-
+import { SurveyDashboardComponent } from './pages/survey-dashboard/survey-dashboard.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
@@ -26,6 +26,11 @@ const routes: Routes = [
     path: 'survey-question',
     component: SurveyQuestionComponent,
     data: { title: 'Survey Question' },
+  },
+  {
+    path: 'survey-dashboard',
+    component: SurveyDashboardComponent,
+    data: { title: 'Survey Dashboard' },
   },
   {
     path: 'survey-question-edit/:id',
