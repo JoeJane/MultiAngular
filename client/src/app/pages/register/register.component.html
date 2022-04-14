@@ -1,19 +1,27 @@
 <main class="container">
   <!--Message area-->
-
-
   <div class="alert alert-danger mt-2 p-2 text-center" *ngIf='errorMessage != null'>
     {{ errorMessage }}
   </div>
-
+  <div class="alert alert-success mt-2 p-2 text-center" *ngIf='successMessage != null'>
+    {{ successMessage }}
+  </div>
 
   <div class="row">
     <div class="offset-md-4 col-md-4 mt-5">
-      <h1>Please Register</h1>
+      <h1 *ngIf="editing; else loggedOut">
+        Update User Profile
+      </h1>
+
+      <ng-template #loggedOut>
+        <h1>Please Register</h1>
+      </ng-template>
+
       <form novalidate #form='ngForm' (ngSubmit)='save(form)' method="POST" class="row g-3" autocomplete="off">
         <fieldset class="col-md-12">
           <label for="username" class="form-label">User Name:</label>
           <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required autofocus [(ngModel)]='user.username'>
+          <input type="hidden" name="isAdmin" id="isAdmin" [(ngModel)]='user.isAdmin'>
         </fieldset>
 
         <fieldset class="col-md-12">
@@ -31,21 +39,11 @@
           <input type="text" class="form-control" name="displayName" id="displayName" placeholder="Enter displayName" required [(ngModel)]='user.displayName'>
         </fieldset>
 
-        <fieldset class="col-md-12 text-right">
-
-
-        </fieldset>
-
-
-
         <fieldset class="form-group float-end">
-          <button class='btn btn-primary m-1' type='submit'>
-            <i class="fas fa-sign-in-alt"></i>
-            Register
+          <button type='submit' class="btn btn-primary m-1" [class.btn-warning]='editing'>
+            <i class="{{editing ? 'fas fa-save' : 'fas fa-plus-circle' }}"></i> {{ editing ? "Update" : "Register" }}
           </button>
-
-          <a href="/login" class="btn btn-secondary m-1"><i class="fas fa-undo"></i> Cancel</a>
-
+          <a href="{{editing ? '/home' : '/login' }}" class="btn btn-secondary m-1"><i class="fas fa-undo"></i> Cancel</a>
         </fieldset>
 
 

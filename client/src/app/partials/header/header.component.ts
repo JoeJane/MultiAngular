@@ -38,4 +38,16 @@ export class HeaderComponent implements OnInit {
     return result;
   }
 
+  isAdmin(): boolean {
+
+    const result = this.authService.authenticated;
+    if (result) {
+      // @ts-ignore
+      this.user = JSON.parse(localStorage.getItem('user'));
+      return this.user.isAdmin;
+    } else {
+      return false;
+    }
+  }
+
 }

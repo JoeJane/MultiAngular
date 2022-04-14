@@ -15,6 +15,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
   {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
   {path: 'register', component: RegisterComponent, data: {title: 'Register User'}},
+  {path: 'profile/:mode/:id', component: RegisterComponent, data: {title: 'Update User Profile'}, canActivate: [StoreFirstGuard]},
+  {path: 'register', component: RegisterComponent, data: {title: 'Register User'}},
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m=>m.AdminModule)},
   { path: 'survey', component: SurveyComponent, data: { title: 'Survey' } },
   {

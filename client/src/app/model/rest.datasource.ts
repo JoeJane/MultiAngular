@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {map} from "rxjs/operators";
 import {User} from "./user.model";
 
 const PROTOCOL = 'http';
@@ -25,8 +24,8 @@ export class RestDataSource {
 
   constructor(private http: HttpClient,
               private jwtService: JwtHelperService) {
-    // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    this.baseUrl = `https://multiangular.herokuapp.com/api/`;
+    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+    // this.baseUrl = `https://multiangular.herokuapp.com/api/`;
     this.user = new User();
   }
 
@@ -36,6 +35,16 @@ export class RestDataSource {
 
   register(user: User): Observable<User> {
     return this.http.post<User>(this.baseUrl + 'register', user, this.httpOptions);
+  }
+
+  displayUserProfile(id: string): Observable<User> {
+    this.loadToken();
+    return this.http.get<User>(`${this.baseUrl}user/edit/${id}`, this.httpOptions);
+  }
+
+  updateUserProfile(user: User): Observable<User> {
+    this.loadToken();
+    return this.http.post<User>(`${this.baseUrl}user/edit/${user._id}`, user, this.httpOptions);
   }
 
   storeUserData(token: any, user: User): void {
@@ -57,6 +66,10 @@ export class RestDataSource {
 
   loggedIn(): boolean {
     return !this.jwtService.isTokenExpired(this.authToken);
+  }
+
+  isAdmin(): boolean {
+    return this.user.isAdmin;
   }
 
   private loadToken(): void {
