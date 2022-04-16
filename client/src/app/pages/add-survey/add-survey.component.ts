@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Survey } from 'src/app/model/survey.model';
-import {AuthService} from "../../model/auth.service";
-import {ActivatedRoute} from "@angular/router";
+
+import { ApiserviceService } from 'src/app/apiservice.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-survey',
@@ -11,25 +12,41 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AddSurveyComponent implements OnInit {
 
-  survey: Survey = new Survey();
-  constructor(private auth: AuthService,
-    activeRoute: ActivatedRoute) { }
-
-  ngOnInit(): void {
+  addForm!: FormGroup;
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiserviceService,
+    public formBuilder: FormBuilder
+  ) 
+  {
+    this.apiService.GetAddSurvey().subscribe((res) => {
+      /*this.addForm.setValue({
+        title: res['title'],
+        description: res['description'],
+        date: res['date'],
+      });*/
+    });
   }
 
-  save(form: NgForm): void {
-    if (form.valid) {
-      this.auth.addSurvey(this.survey).subscribe(data => {
-        if(data.success){
-          alert("Survey Added");
-          //this.router.navigateByUrl('admin/main');
-        } else {
-          alert("Error in Survey Added");
-        }
-      });
-    }
+  ngOnInit(): void {
+    this.addForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      date: ['', Validators.required]
+    });
+  }
 
+  addSurvey() {
+    this.apiService.AddSurvey(this.addForm.value).subscribe(
+      () => {
+        console.log('Data added successfully!');
+        this.router.navigateByUrl('/survey');
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
 }

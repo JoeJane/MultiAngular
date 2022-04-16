@@ -1,20 +1,20 @@
-let mongoose = require("mongoose");
+let mongoose = require('mongoose');
 
 let surveyModel = mongoose.Schema(
     {
         userId:
             {
-                type: Number,
-                default: 1,
-                trim: true,
-                required: 'userId is required'
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true
             },
         surveyId:
             {
-                type: Number,
-                default: 1,
-                trim: true,
-                required: 'surveyId is required'
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true
             },
         title:
             {
@@ -29,6 +29,11 @@ let surveyModel = mongoose.Schema(
                 default: '',
                 trim: true,
                 required: 'Description is required'
+            },
+        date:
+            {
+                type: Date, 
+                default: Date.now
             }
     },
     {
@@ -37,4 +42,5 @@ let surveyModel = mongoose.Schema(
 );
 
 module.exports = mongoose.model('Survey', surveyModel);
+
 

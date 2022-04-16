@@ -19,38 +19,13 @@ const routes: Routes = [
   {path: 'profile/:mode/:id', component: RegisterComponent, data: {title: 'Update User Profile'}, canActivate: [StoreFirstGuard]},
   {path: 'register', component: RegisterComponent, data: {title: 'Register User'}},
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m=>m.AdminModule)},
-  { path: 'survey', component: SurveyComponent, data: { title: 'Survey' } },
-  {
-    path: 'survey-edit/:id',
-    component: SurveyEditComponent,
-    data: { title: 'Survey Edit' },
-  },
-  {
-    path: 'survey-question',
-    component: SurveyQuestionComponent,
-    data: { title: 'Survey Question' },
-  },
-  {
-    path: 'survey-dashboard',
-    component: SurveyDashboardComponent,
-    data: { title: 'Survey Dashboard' },
-  },
-  {
-    path: 'survey-question-edit/:id',
-    component: SurveyQuestionEditComponent,
-    data: { title: 'Survey Question Edit' },
-  },
-  {
-    path: 'api/survey/add',
-    component: AddSurveyComponent,
-    data: { title: 'Survey Management' },
-  },
-  {
-    path: 'api/surveyQuestions/add',
-    component: SurveyQuestionsAddComponent,
-    data: { title: 'Survey Management' },
-  },
-
+  {path: 'survey', component: SurveyComponent, data: { title: 'Survey' } },
+  {path: 'survey-edit/:id', component: SurveyEditComponent, data: { title: 'Survey Edit' }},
+  {path: 'survey-question', component: SurveyQuestionComponent, data: { title: 'Survey Question' }},
+  {path: 'survey-dashboard', component: SurveyDashboardComponent, data: { title: 'Survey Dashboard' }},
+  {path: 'survey-question-edit/:id', component: SurveyQuestionEditComponent, data: { title: 'Survey Question Edit' }},
+  {path: 'add-survey', component: AddSurveyComponent, data: { title: 'Survey Add' }},
+  {path: 'survey-question-add', component: SurveyQuestionsAddComponent, data: { title: 'Survey Management' }},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home'}
 ];
