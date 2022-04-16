@@ -8,6 +8,7 @@
                 <h1 class="display-4">Add a survey</h1>
             </div>
             <br>
+
             <form class="form" [formGroup]="addForm" (ngSubmit)="addSurvey()">
                
                 <div class="form-group">
@@ -31,6 +32,7 @@
                 <br>
                 <!--Adding buttons to perform submit, cancel and delete actions-->
                 <button class="btn btn-success" type='submit'> Submit</button>&nbsp;&nbsp;
+
                 <a routerLink="/survey" class="btn btn-warning"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
