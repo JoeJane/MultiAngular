@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {User} from "./user.model";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from './user.model';
 import { Survey } from './survey.model';
 
 const PROTOCOL = 'http';
@@ -19,12 +19,12 @@ export class RestDataSource {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-    })
+      'Access-control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept',
+    }),
   };
 
-  constructor(private http: HttpClient,
-              private jwtService: JwtHelperService) {
+  constructor(private http: HttpClient, private jwtService: JwtHelperService) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
     // this.baseUrl = `https://multiangular.herokuapp.com/api/`;
     this.user = new User();
@@ -35,23 +35,38 @@ export class RestDataSource {
   }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>(this.baseUrl + 'register', user, this.httpOptions);
+    return this.http.post<User>(
+      this.baseUrl + 'register',
+      user,
+      this.httpOptions
+    );
   }
 
   addSurvey(survey: Survey): Observable<Survey> {
     //this.loadToken();
-    console.log(JSON.stringify(survey));
-    return this.http.post<Survey>(this.baseUrl + 'survey/add', survey, this.httpOptions); 
+    // console.log(JSON.stringify(survey));
+    return this.http.post<Survey>(
+      this.baseUrl + 'survey/add',
+      survey,
+      this.httpOptions
+    );
   }
-  
+
   displayUserProfile(id: string): Observable<User> {
     this.loadToken();
-    return this.http.get<User>(`${this.baseUrl}user/edit/${id}`, this.httpOptions);
+    return this.http.get<User>(
+      `${this.baseUrl}user/edit/${id}`,
+      this.httpOptions
+    );
   }
 
   updateUserProfile(user: User): Observable<User> {
     this.loadToken();
-    return this.http.post<User>(`${this.baseUrl}user/edit/${user._id}`, user, this.httpOptions);
+    return this.http.post<User>(
+      `${this.baseUrl}user/edit/${user._id}`,
+      user,
+      this.httpOptions
+    );
   }
 
   storeUserData(token: any, user: User): void {
@@ -82,8 +97,9 @@ export class RestDataSource {
   private loadToken(): void {
     const token = localStorage.getItem('id_token');
     this.authToken = token || '';
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.authToken);
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      this.authToken
+    );
   }
-
-
 }

@@ -17,13 +17,13 @@ const { findByUsername } = require('../models/survey');
 router.get('/surveyList', surveyController.displaySurveyList);
 
 /* GET request for add pages - CREATE Operation*/
-router.get('/add', surveyController.displayAddPage);
+// router.get('/add', surveyController.displayAddPage);
 
 /* POST request for add pages - CREATE Operation*/
 router.post('/add', surveyController.processAddPage);
 
 /* GET request for edit pages - UPDATE Operation*/
-router.get('/edit/:id', surveyController.displayEditPage);
+// router.get('/edit/:id', surveyController.displayEditPage);
 
 /* POST request for edit pages - UPDATE Operation*/
 router.post('/edit/:id', surveyController.processEditPage);
@@ -33,6 +33,5 @@ router.get('/delete/:id', surveyController.performDelete);
 
 /* GET request for surveys */
 router.get('/:id', surveyController.displaySurveyById);
-
 
 module.exports = router;
