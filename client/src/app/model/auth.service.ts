@@ -1,24 +1,38 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {RestDataSource} from './rest.datasource';
-import {JwtHelperService} from '@auth0/angular-jwt';
-
 import {User} from './user.model';
+import {Survey} from './survey.model';
 
 @Injectable()
 export class AuthService {
   user: User;
+  survey: Survey;
 
   constructor(private datasource: RestDataSource) {
     this.user = new User();
+    this.survey = new Survey();
   }
 
   authenticate(user: User): Observable<any> {
     return this.datasource.authenticate(user);
   }
 
+  displayUserProfile(id: string): Observable<any>{
+    return this.datasource.displayUserProfile(id);
+  }
+
+  updateUserProfile(user: User): Observable<any>{
+    return this.datasource.updateUserProfile(user);
+  }
+
   register(user: User): Observable<any> {
     return this.datasource.register(user);
+  }
+
+  addSurvey(survey: Survey) :Observable<any>
+  {
+    return this.datasource.addSurvey(survey);
   }
 
   storeUserData(token: any, user: User): void {
@@ -27,6 +41,10 @@ export class AuthService {
 
   get authenticated(): boolean {
     return this.datasource.loggedIn();
+  }
+
+  isAdmin(): boolean {
+    return this.datasource.isAdmin();
   }
 
   logout(): Observable<any> {

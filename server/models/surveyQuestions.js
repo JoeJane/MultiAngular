@@ -4,12 +4,12 @@ let surveyQuestionsModel = mongoose.Schema(
     {
         question1:
         {
-            questionId: 
+            _id: 
             {
-                type: Number,
-                default: 1,
-                trim: true,
-                required: 'questionId is required'
+                type: mongoose.Schema.Types.ObjectId,
+                index: true,
+                required: true,
+                auto: true
             },
             surveyId: 
             {

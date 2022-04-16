@@ -36,6 +36,7 @@ export class SurveyEditComponent implements OnInit {
       userId: [''],
     });
   }
+  
   updateSurvey() {
     this.apiService.updateSurveyId(this.getId, this.updateForm.value).subscribe(
       () => {
