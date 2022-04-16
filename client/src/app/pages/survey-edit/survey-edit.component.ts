@@ -19,8 +19,9 @@ export class SurveyEditComponent implements OnInit {
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     this.apiService.GetSurveyById(this.getId).subscribe((res) => {
+      console.log('Response ', res);
       this.updateForm.setValue({
-        surveyId: res['surveyId'],
+        surveyId: res['_id'],
         title: res['title'],
         description: res['description'],
         userId: res['userId'],
@@ -36,7 +37,6 @@ export class SurveyEditComponent implements OnInit {
       userId: [''],
     });
   }
-  
   updateSurvey() {
     this.apiService.updateSurveyId(this.getId, this.updateForm.value).subscribe(
       () => {

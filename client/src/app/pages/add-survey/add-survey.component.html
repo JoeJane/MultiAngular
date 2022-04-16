@@ -8,35 +8,38 @@
                 <h1 class="display-4">Add a survey</h1>
             </div>
             <br>
-
-            <form class="form" [formGroup]="addForm" (ngSubmit)="addSurvey()">
-               
+            <form #form="ngForm" (ngSubmit)='save(form)' method="POST" novalidate autocomplete="off">
                 <div class="form-group">
-                    <label>Title: </label>
+                    <label for="title">Title: </label>
                     <input type="text" class="form-control" 
+                    id="title" 
                     placeholder="Enter the Title"
-                    formControlName="title" required>
+                    name="title"
+                    required [(ngModel)]='survey.title'>
                 </div>
                 <div class="form-group">
-                    <label>Description: </label>
+                    <label for="description">Description: </label>
                     <input type="text" class="form-control" 
+                    id="description" 
                     placeholder="Enter the Description"
-                    formControlName="description" required>
+                    name="description"
+                    required [(ngModel)]='survey.description'>
                 </div>
                 <div class="form-group">
-                    <label>Date: </label>
+                    <label for="date">Date: </label>
                     <input type="date" class="form-control" 
+                    id="date" 
                     placeholder="Enter the date"
-                    formControlName="date" required>
+                    name="date"
+                    required [(ngModel)]='survey.date'>
                 </div>
                 <br>
                 <!--Adding buttons to perform submit, cancel and delete actions-->
                 <button class="btn btn-success" type='submit'> Submit</button>&nbsp;&nbsp;
-
-                <a routerLink="/survey" class="btn btn-warning"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>&nbsp;&nbsp;
+                <a href="/api/survey/surveyList" class="btn btn-warning"><i class="fa fa-times" aria-hidden="true"></i> Cancel</a>&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/survey-question-add" class="btn btn-success"> Create questions</a>                 
+                <a href="/api/surveyQuestions/add" class="btn btn-success"> Create questions</a>                 
             </form>
         </div>
     </div>
