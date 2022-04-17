@@ -64,13 +64,9 @@ const routes: Routes = [
     component: SurveyQuestionEditComponent,
     data: { title: 'Survey Question Edit' },
   },
+  {path: 'add-survey', component: AddSurveyComponent, data: { title: 'Survey Add' }},
   {
-    path: 'survey/add',
-    component: AddSurveyComponent,
-    data: { title: 'Survey Management' },
-  },
-  {
-    path: 'surveyQuestions/add',
+    path: 'survey-question-add',
     component: SurveyQuestionsAddComponent,
     data: { title: 'Survey Management' },
   },
