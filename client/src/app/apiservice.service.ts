@@ -12,7 +12,7 @@ import {
 })
 export class ApiserviceService {
   // api base url
-  BASE_URL: string = 'http://localhost:3000/api';
+  BASE_URL: string = 'https://multiangular.herokuapp.com/api';
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private httpClient: HttpClient) {}
