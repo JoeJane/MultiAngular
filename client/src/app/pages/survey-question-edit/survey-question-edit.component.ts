@@ -19,21 +19,28 @@ export class SurveyQuestionEditComponent implements OnInit {
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     this.apiService.GetSurveyQuestionById(this.getId).subscribe((res) => {
+      console.log('Question Update Res', res);
       this.surveyQuestionUpdateForm.setValue({
+        userid: res['userId'],
+        surveyid: res['surveyId'],
         question1: res['question1'],
         question2: res['question2'],
         question3: res['question3'],
         question4: res['question4'],
+        question5: res['question5'],
       });
     });
   }
 
   ngOnInit(): void {
     this.surveyQuestionUpdateForm = this.formBuilder.group({
+      userid: [''],
+      surveyid: [''],
       question1: [''],
       question2: [''],
       question3: [''],
       question4: [''],
+      question5: [''],
     });
   }
 

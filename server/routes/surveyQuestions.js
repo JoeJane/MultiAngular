@@ -14,16 +14,19 @@ const { findByUsername } = require('../models/surveyQuestions');
 }*/
 
 /* GET request for surveys - Get all Survey Questions */
-router.get('/surveyQuestionsList', surveyQuestionsController.displaySurveyQuestionsList);
+router.get(
+	'/surveyQuestionsList',
+	surveyQuestionsController.displaySurveyQuestionsList
+);
 
 /* GET request for add pages - CREATE Operation*/
-router.get('/add', surveyQuestionsController.displayAddSurveyQuestionsPage);
+// router.get('/add', surveyQuestionsController.displayAddSurveyQuestionsPage);
 
 /* POST request for add pages - CREATE Operation*/
 router.post('/add', surveyQuestionsController.processAddSurveyQuestionsPage);
 
 /* GET request for edit pages - UPDATE Operation*/
-router.get('/edit/:id',surveyQuestionsController.displaySurveyQuestionEditPage);
+// router.get('/edit/:id',surveyQuestionsController.displaySurveyQuestionEditPage);
 
 /* POST request for edit pages - UPDATE Operation*/
 router.post('/edit/:id', surveyQuestionsController.processSurveyQuestionUpdate);
@@ -31,10 +34,7 @@ router.post('/edit/:id', surveyQuestionsController.processSurveyQuestionUpdate);
 /* GET request for delete - DELETE Operation*/
 router.get('/delete/:id', surveyQuestionsController.performDelete);
 
-
 /* GET request for surveys - Get all Survey Questions */
 router.get('/:id', surveyQuestionsController.getSurveyQuestionById);
 
 module.exports = router;
-
-

@@ -35,7 +35,7 @@ mongoDB.once('open', ()=>{
 let indexRouter = require('../routes');
 let surveyRouter = require('../routes/survey');
 let surveyQuestionsRouter = require('../routes/surveyQuestions');
-
+let surveyAnswersRouter = require('../routes/surveyAnswers');
 
 let app = express();
 
@@ -99,6 +99,7 @@ passport.use(strategy);
 app.use('/api', indexRouter);
 app.use('/api/survey', surveyRouter);
 app.use('/api/surveyQuestions', surveyQuestionsRouter);
+app.use('/api/surveyAnswers', surveyAnswersRouter);
 app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
