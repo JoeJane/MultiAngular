@@ -22,6 +22,18 @@ export class ApiserviceService {
     return this.httpClient.get(`${this.BASE_URL}/survey/surveyList`);
   }
 
+  // Get all survey
+  GetAddSurvey() {
+    let API_URL = `${this.BASE_URL}/survey/add`;
+    return this.httpClient.get(API_URL);
+  }
+
+  // Get all survey
+  AddSurvey(data: any): Observable<any> {
+    let API_URL = `${this.BASE_URL}/survey/add`;
+    return this.httpClient.post(API_URL, data);
+  }
+
   // delete survey
   deleteSurvey(id: any): Observable<any> {
     let API_URL = `${this.BASE_URL}/survey/delete/${id}`;
