@@ -58,6 +58,15 @@ export class RestDataSource {
     );
   }
 
+  changePassword(user: User): Observable<User> {
+    this.loadToken();
+    return this.http.post<User>(
+      `${this.baseUrl}user/chanePassword/${user._id}`,
+      user,
+      this.httpOptions
+    );
+  }
+
   storeUserData(token: any, user: User): void {
     localStorage.setItem('id_token', 'Bearer ' + token);
     localStorage.setItem('user', JSON.stringify(user));

@@ -23,7 +23,6 @@ export class SurveyAnswerComponent implements OnInit {
   }
 
   deleteSurveyQuestion(id: any, i: any) {
-    console.log(id);
     if (window.confirm('Do You Want Delete?')) {
       this.apiService.deleteSurveyQuestion(id).subscribe(() => {
         this.SurveyQuestion.splice(i, 1);

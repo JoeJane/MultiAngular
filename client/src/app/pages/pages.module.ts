@@ -14,6 +14,7 @@ import { RouterModule } from "@angular/router";
 import { AddSurveyComponent } from './add-survey/add-survey.component';
 import { SurveyAnswerComponent } from './survey-answer/survey-answer.component';
 import { TakeSurveyComponent } from './take-survey/take-survey.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, PartialsModule, ReactiveFormsModule,
@@ -26,7 +27,8 @@ import { TakeSurveyComponent } from './take-survey/take-survey.component';
     SurveyQuestionEditComponent,
     AddSurveyComponent,
     SurveyAnswerComponent,
-    TakeSurveyComponent],
+    TakeSurveyComponent,
+    ChangePasswordComponent],
     
   exports: [HomeComponent, PartialsModule]
 })

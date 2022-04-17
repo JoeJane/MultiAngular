@@ -27,6 +27,10 @@ export class AuthService {
     return this.datasource.register(user);
   }
 
+  changePassword(user: User): Observable<any>{
+    return this.datasource.changePassword(user);
+  }
+
   storeUserData(token: any, user: User): void {
     this.datasource.storeUserData(token, user);
   }

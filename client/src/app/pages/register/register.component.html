@@ -20,11 +20,11 @@
       <form novalidate #form='ngForm' (ngSubmit)='save(form)' method="POST" class="row g-3" autocomplete="off">
         <fieldset class="col-md-12">
           <label for="username" class="form-label">User Name:</label>
-          <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required autofocus [(ngModel)]='user.username'>
+          <input [readonly]="editing" type="text" class="form-control" name="username" id="username" placeholder="Enter username" required autofocus [(ngModel)]='user.username'>
           <input type="hidden" name="isAdmin" id="isAdmin" [(ngModel)]='user.isAdmin'>
         </fieldset>
 
-        <fieldset class="col-md-12">
+        <fieldset class="col-md-12" *ngIf="!editing">
           <label for="password" class="form-label">Password:</label>
           <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required [(ngModel)]='user.password'>
         </fieldset>

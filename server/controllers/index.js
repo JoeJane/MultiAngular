@@ -111,6 +111,25 @@ module.exports.processEditRegistrationPage = (req, res, next) => {
     });
 }
 
+module.exports.changePassword = (req, res, next) => {
+    let id = req.params.id;
+    let oldPassword = req.body.old_password;
+    let newPassword = req.body.password;
+
+    User.findById(id, (err, profileToEdit) => {
+        if(err){
+            console.log(err);
+            res.json({success: false, msg: 'User does not Exist!'});
+        } else {
+            profileToEdit.changePassword(oldPassword, newPassword, err => {
+                if (err)
+                    res.json({success: false, msg: err})
+                else
+                    res.json({success: true, msg: 'User Logged in Successfully!'});
+            })
+        }
+    });
+}
 
 module.exports.performLogout = (req, res, next) => {
     req.logout();

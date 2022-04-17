@@ -27,6 +27,9 @@ router.get('/user/edit/:id', passport.authenticate('jwt', {session: false}), ind
 /* POST request for edit pages - UPDATE Operation*/
 router.post('/user/edit/:id', passport.authenticate('jwt', {session: false}), indexController.processEditRegistrationPage);
 
+// change password
+router.post('/user/chanePassword/:id', passport.authenticate('jwt', {session: false}), indexController.changePassword);
+
 
 // GET to perform User Logout
 router.get('/logout', indexController.performLogout);

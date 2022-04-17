@@ -13,6 +13,7 @@ import { SurveyDashboardComponent } from './pages/survey-dashboard/survey-dashbo
 import { AddSurveyComponent } from './pages/add-survey/add-survey.component';
 import { SurveyAnswerComponent } from './pages/survey-answer/survey-answer.component';
 import { TakeSurveyComponent } from './pages/take-survey/take-survey.component';
+import {ChangePasswordComponent} from "./pages/change-password/change-password.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
@@ -32,6 +33,12 @@ const routes: Routes = [
     component: RegisterComponent,
     data: { title: 'Update User Profile' },
     canActivate: [StoreFirstGuard],
+  },
+  {
+    path: 'change_password/:id',
+    component: ChangePasswordComponent,
+    data: { title: 'Change User Password' },
+    canActivate: [StoreFirstGuard]
   },
   {
     path: 'register',

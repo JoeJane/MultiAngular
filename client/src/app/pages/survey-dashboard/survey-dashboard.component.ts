@@ -13,7 +13,6 @@ export class SurveyDashboardComponent implements OnInit {
   constructor(private apiService: ApiserviceService, public authService: AuthService) {}
   ngOnInit(): void {
     this.apiService.GetSurvey().subscribe((res: any) => {
-      console.log(res);
       this.Survey = res;
     });
   }
