@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
           if(data.success){
             this.successMessage = "User created successfully!";
             setTimeout(()=>{
-              this.router.navigateByUrl('admin/main');
+              this.router.navigateByUrl('survey-dashboard');
             }, 2000);
           } else {
             this.errorMessage = data.msg;
@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
             this.successMessage = "User updated successfully!";
 
             setTimeout(()=>{
-              this.router.navigateByUrl('admin/main');
+              this.router.navigateByUrl('survey-dashboard');
             }, 2000);
 
 
