@@ -1,54 +1,53 @@
 let mongoose = require('mongoose');
 
-let surveyQuestionsModel = mongoose.Schema(
-
+let surveyAnswersModel = mongoose.Schema(
 	{
 		userId: {
 			type: mongoose.Schema.Types.ObjectId,
 			default: 1,
-			required: [true, 'userId is required'],
+			required: [true, 'User Id is required'],
 			ref: 'User',
 		},
-		surveyId: {
+		questionId: {
 			type: mongoose.Schema.Types.ObjectId,
 			default: 1,
 			required: [true, 'Survey Id is required'],
-			ref: 'Survey',
+			ref: 'SurveyQuestions',
 		},
-		question1: {
+		answer1: {
 			type: String,
 			default: '',
 			trim: true,
-			required: 'Question 1 is required',
+			required: 'Answer is required',
 		},
-		question2: {
+		answer2: {
 			type: String,
 			default: '',
 			trim: true,
-			required: 'Question 2 is required',
+			required: 'Answer is required',
 		},
-		question3: {
+		answer3: {
 			type: String,
 			default: '',
 			trim: true,
-			required: 'Question 3 is required',
+			required: 'Answer is required',
 		},
-		question4: {
+		answer4: {
 			type: String,
 			default: '',
 			trim: true,
-			required: 'Question 4 is required',
+			required: 'Answer is required',
 		},
-		question5: {
+		answer5: {
 			type: String,
 			default: '',
 			trim: true,
-			required: 'Question 5 is required',
+			required: 'Answer is required',
 		},
 	},
 	{
-		collection: 'surveyquestions',
+		collection: 'surveyanswers',
 	}
 );
 
-module.exports = mongoose.model('SurveyQuestions', surveyQuestionsModel);
+module.exports = mongoose.model('SurveyAnswers', surveyAnswersModel);
